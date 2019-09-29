@@ -65,7 +65,12 @@ var features = {
 
       setTimeout(() => {
         console.log(friend);
-        friend.btn.click();
+        if (friend && friend.btn) {
+          friend.btn.click();
+        }
+        if ($("button[value='OK']").length > 0) {
+          $("button[value='OK']").click();
+        }
         temporaryFunction();
       }, 30000);
     }
