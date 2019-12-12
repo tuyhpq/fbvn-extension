@@ -44,4 +44,14 @@ $(function() {
       console.log("Execute make friend successfully.");
     });
   });
+
+  // Remove all posts in group
+  $("#btnRemovePosts").click(() => {
+    chrome.runtime.sendMessage({ msg: "removePosts", tabId: tabId });
+  });
+
+  // Remove all posts in group
+  $("#btnRemovePostsMobile").click(() => {
+    chrome.runtime.sendMessage({ msg: "removePostsMobile", tabId: tabId });
+  });
 });

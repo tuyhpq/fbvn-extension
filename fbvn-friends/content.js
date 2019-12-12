@@ -75,5 +75,80 @@ var features = {
       }, 30000);
     }
     temporaryFunction();
+  },
+  removePosts() {
+    function main() {
+      setTimeout(() => {
+        $('div[class="mvm pam uiBoxGray _52jv"]').remove();
+        var cancels = $('a.autofocus.layerCancel');
+        clickAllButton(cancels);
+
+        setTimeout(() => {
+          var buttons = $('a[data-testid="post_chevron_button"]');
+          clickAllButton(buttons);
+          console.log("A: " + buttons.length);
+          setTimeout(() => {
+            var buttons = $('i[class="_41t7 img sp_66mIw9cKlB9 sx_5bb53b"]');
+            clickAllButton(buttons);
+            console.log("B: " + buttons.length);
+
+            setTimeout(() => {
+              var buttons = $('.uiOverlayFooterButtons button._4jy1[value="1"][type="submit"]');
+              clickAllButton(buttons);
+              console.log("C: " + buttons.length);
+              setTimeout(() => {
+                main();
+              }, 5000);
+            }, 4000);
+          }, 2000);
+        }, 2000);
+      }, 1000);
+    }
+
+    $(function() {
+      main();
+    });
+  },
+  removePostsMobile() {
+    function main() {
+      setTimeout(() => {
+        var buttons = $('.story_body_container:visible i[class="img sp_sJW2P2tLEpz sx_214509"]');
+        clickAllButton(buttons);
+        console.log("A1: " + buttons.length);
+        setTimeout(() => {
+          var buttons = $('.story_body_container:visible i[class="img sp_sJW2P2tLEpz sx_214509"]');
+          clickAllButton(buttons);
+          console.log("A2: " + buttons.length);
+
+          setTimeout(() => {
+            var buttons = $('a:visible[data-sigil="touchable touchable removeStoryButton enabled_action"]');
+            clickAllButton(buttons);
+            console.log("B: " + buttons.length);
+
+            setTimeout(() => {
+              var buttons = $('a:visible[title="Xóa"]');
+              clickAllButton(buttons);
+              console.log("C: " + buttons.length);
+              setTimeout(() => {
+                main();
+              }, 4000);
+            }, 3000);
+          }, 3000);
+        }, 2000);
+      }, 1000);
+    }
+    $(function() {
+      main();
+    });
   }
+}
+
+var clickAllButton = function(buttons) {
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].click();
+  }
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
