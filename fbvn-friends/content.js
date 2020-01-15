@@ -1,3 +1,5 @@
+import GroupModeration from './plugins/GroupModeration';
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   var data = features[message.command]();
   sendResponse({ data });
@@ -75,5 +77,11 @@ var features = {
       }, 30000);
     }
     temporaryFunction();
+  },
+  approvePendingPost() {
+    GroupModeration.approvePendingPost();
+  },
+  approvePendingMember() {
+    GroupModeration.approvePendingMember();
   }
 }

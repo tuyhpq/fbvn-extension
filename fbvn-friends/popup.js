@@ -44,4 +44,9 @@ $(function() {
       console.log("Execute make friend successfully.");
     });
   });
+
+  // Kiểm duyệt nhóm
+  $("#btnCensorGroup").click(() => {
+    chrome.runtime.sendMessage({ command: "CensorGroup", tabId: tabId });
+  });
 });
