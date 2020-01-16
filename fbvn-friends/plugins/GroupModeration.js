@@ -3,6 +3,7 @@ import Common from './Common';
 export default {
   approvePendingPost() {
     async function main() {
+      await Common.sleep(1000);
       var articleList = $(`div[role="article"]`);
       for (let article of articleList) {
         Common.scrollToElement(article);
@@ -34,11 +35,11 @@ export default {
         chrome.runtime.sendMessage({ command: "Next" });
       }
     }
-    await Common.sleep(1000);
     main();
   },
   approvePendingMember() {
     async function main() {
+      await Common.sleep(1000);
       Common.scrollToElement($('#member_requests_pagelet'));
       await Common.sleep(1000);
 
@@ -50,7 +51,6 @@ export default {
       await Common.sleep(3000);
       chrome.runtime.sendMessage({ command: "Next" });
     }
-    await Common.sleep(1000);
     main();
   }
 };
