@@ -55,12 +55,14 @@ const FEATURE = {
     const groups = [
       { id: "106584670094311", name: "Chợ ăn Cần Thơ" },
       { id: "2621702094586454", name: "Đồ cũ Tuy Hòa" },
+      { id: "346843986016861", name: "Tus buồn" },
       { id: "498154793692114", name: "Buff sao Liên Quân" },
       { id: "191718824567616", name: "Liên quân confess" },
       { id: "vltk2016", name: "ZSM" },
       { id: "danh.tuong.3q.vng", name: "Danh tướng" },
       { id: "ccht.garena", name: "FF mua bán" },
-      { id: "1954247621454629", name: "FF cộng đồng" }
+      { id: "1954247621454629", name: "FF cộng đồng" },
+      { id: "AxE.Alliance.Empire.VN", name: "Mua bán AxE" }
     ];
     let id = 0;
     let getIndex = function() {
