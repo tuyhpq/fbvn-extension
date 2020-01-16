@@ -1,52 +1,25 @@
-var tabId = null;
-var stackJobs = [];
-
-// Get id of current tab
+// Xử lý cơ bản
+let currentTabId = null;
 chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-  tabId = tabs[0].id;
+  currentTabId = tabs[0].id;
 });
 
-// Run a job in stack
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-  if (changeInfo.status === "complete") {
-    var job = stackJobs.pop();
-    if (job) {
-      job();
-    }
-  }
+/**
+ * Quản lý Bạn Bè
+ */
+
+$("#btnAddFriends").click(() => {
+  chrome.runtime.sendMessage({ command: "AddFriends", tabId: currentTabId });
 });
 
-$(function() {
-  // Go make friend requests page
-  $("#btnGotoCancelMakeFriendRequestsPage").click(() => {
-    chrome.tabs.update(tabId, { url: "https://m.facebook.com/friends/center/requests/outgoing/" }, () => {
-      console.log("Goto " + "https://m.facebook.com/friends/center/requests/outgoing/");
-    });
-  });
+$("#btnCancelFriendRequestsSent").click(() => {
+  chrome.runtime.sendMessage({ command: "CancelFriendRequestsSent", tabId: currentTabId });
+});
 
-  // Execute cancel make friend requests
-  $("#btnExecuteCancelMakeFriendRequests").click(() => {
-    chrome.tabs.sendMessage(tabId, { command: "cancelMakeFriendRequests" }, () => {
-      console.log("Execute cancel make friend requests successfully.");
-    });
-  });
+/**
+ * Quản lý Nhóm
+ */
 
-  // Go make friend page
-  $("#btnGotoMakeFriendPage").click(() => {
-    chrome.tabs.update(tabId, { url: "https://m.facebook.com/friends/center/suggestions/?mff_nav=1&fb_ref=swpsa" }, () => {
-      console.log("Goto " + "https://m.facebook.com/friends/center/suggestions/?mff_nav=1&fb_ref=swpsa");
-    });
-  });
-
-  // Execute make friend
-  $("#btnExecuteMakeFriend").click(() => {
-    chrome.tabs.sendMessage(tabId, { command: "makeFriend" }, () => {
-      console.log("Execute make friend successfully.");
-    });
-  });
-
-  // Kiểm duyệt nhóm
-  $("#btnCensorGroup").click(() => {
-    chrome.runtime.sendMessage({ command: "CensorGroup", tabId: tabId });
-  });
+$("#btnBasicModerateGroups").click(() => {
+  chrome.runtime.sendMessage({ command: "BasicModerateGroups", tabId: currentTabId });
 });

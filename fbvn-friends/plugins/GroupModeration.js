@@ -30,10 +30,11 @@ export default {
       if (articleList.length !== 0) {
         main();
       } else {
-        await Common.sleep(10000);
+        await Common.sleep(5000);
         chrome.runtime.sendMessage({ command: "Next" });
       }
     }
+    await Common.sleep(1000);
     main();
   },
   approvePendingMember() {
@@ -46,9 +47,10 @@ export default {
         $(approveButton).click();
         await Common.sleep(1000);
       }
-      await Common.sleep(1000);
+      await Common.sleep(3000);
       chrome.runtime.sendMessage({ command: "Next" });
     }
+    await Common.sleep(1000);
     main();
   }
 };

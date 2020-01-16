@@ -2,10 +2,13 @@ export default {
   sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   },
-  scrollToElement(element, deviation = 80) {
+  scrollToElement(element, deviation = 80, time = 500) {
     $([document.documentElement, document.body]).animate({
       scrollTop: $(element).offset().top - deviation
-    }, 500);
+    }, time);
+  },
+  scrollToBottom() {
+    window.scrollTo(0, document.body.scrollHeight);
   },
   clickTotalLinks(links) {
     for (let i = 0; i < links.length; i++) {

@@ -1,101 +1,93 @@
-const JOB_LIST = [];
+/* Xử lý cơ bản */
+
+const JOBS_STACK = [];
+
+function ExecuteJob() {
+  let job = JOBS_STACK.pop();
+  job && job();
+}
+function AddJob(job) {
+  JOBS_STACK.push(job);
+}
 
 chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
-    if (request.command == "Next") {
-      let job = JOB_LIST.pop();
-      job && job();
-    } else if (request.command == "CensorGroup") {
-      censorGroup(request.tabId)
+  function(message, sender, sendResponse) {
+    if (message.command === "Next") {
+      ExecuteJob();
+    } else {
+      FEATURE[message.command](message.tabId);
     }
   }
 );
-
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   if (changeInfo.status === "complete") {
-    let job = JOB_LIST.pop();
-    job && job();
+    ExecuteJob();
   }
 });
 
-var groups = [
-  '2621702094586454',  // đồ cũ Tuy Hòa
-  '498154793692114', // buff sao
-  '191718824567616', // liên quân confess
-  'vltk2016', // zsm
-  'danh.tuong.3q.vng', // danh tướng
-  'ccht.garena', // ff mua bán
-  '1954247621454629' // ff garena
-];
-var id = 0;
-var getId = function() {
-  var val = id;
-  if (++id >= groups.length) {
-    id = 0;
-  }
-  return val;
-}
+/* Tính năng */
 
-function censorGroup(tabId) {
-  let groupId = groups[getId()];
-  chrome.tabs.update(tabId, { url: "https://www.facebook.com/groups/" + groupId + "/pending/" }, () => {
-    JOB_LIST.push(() => {
-      chrome.tabs.sendMessage(tabId, { command: "approvePendingPost" });
-      JOB_LIST.push(() => {
-        chrome.tabs.update(tabId, { url: "https://www.facebook.com/groups/" + groupId + "/requests/" }, () => {
-          JOB_LIST.push(() => {
-            chrome.tabs.sendMessage(tabId, { command: "approvePendingMember" });
-            JOB_LIST.push(() => { censorGroup(tabId); });
+const FEATURE = {
+  /**
+   * Tự động kết bạn
+   */
+  AddFriends(tabId) {
+    chrome.tabs.update(tabId, { url: "https://m.facebook.com/friends/center/suggestions/" }, () => {
+      AddJob(() => {
+        chrome.tabs.sendMessage(tabId, { command: "addFriends" });
+      });
+    });
+  },
+  /**
+  * Hủy lời mời kết bạn đã gửi
+  */
+  CancelFriendRequestsSent(tabId) {
+    chrome.tabs.update(tabId, { url: "https://m.facebook.com/friends/center/requests/outgoing/" }, () => {
+      AddJob(() => {
+        chrome.tabs.sendMessage(tabId, { command: "cancelFriendRequestsSent" });
+      });
+    });
+  },
+  /**
+   * Duyệt bài và thành viên
+   */
+  BasicModerateGroups(tabId) {
+    const groups = [
+      { id: "106584670094311", name: "Chợ ăn Cần Thơ" },
+      { id: "2621702094586454", name: "Đồ cũ Tuy Hòa" },
+      { id: "498154793692114", name: "Buff sao Liên Quân" },
+      { id: "191718824567616", name: "Liên quân confess" },
+      { id: "vltk2016", name: "ZSM" },
+      { id: "danh.tuong.3q.vng", name: "Danh tướng" },
+      { id: "ccht.garena", name: "FF mua bán" },
+      { id: "1954247621454629", name: "FF cộng đồng" }
+    ];
+    let id = 0;
+    let getIndex = function() {
+      let val = id;
+      if (++id >= groups.length) {
+        id = 0;
+      }
+      return val;
+    }
+    async function main() {
+      let groupId = groups[getIndex()].id;
+      chrome.tabs.update(tabId, { url: "https://www.facebook.com/groups/" + groupId + "/pending/" }, () => {
+        AddJob(() => {
+          chrome.tabs.sendMessage(tabId, { command: "approvePendingPost" });
+          AddJob(() => {
+            chrome.tabs.update(tabId, { url: "https://www.facebook.com/groups/" + groupId + "/requests/" }, () => {
+              AddJob(() => {
+                chrome.tabs.sendMessage(tabId, { command: "approvePendingMember" });
+                AddJob(() => {
+                  main();
+                });
+              });
+            });
           });
         });
       });
-    });
-  });
-}
-
-var removePosts = function(tabId) {
-  chrome.tabs.sendMessage(tabId, { command: "removePosts" });
-
-  setInterval(() => {
-    chrome.tabs.update(tabId, { url: "https://www.facebook.com/groups/1954247621454629" }, () => {
-      console.log("Goto " + "https://www.facebook.com/groups/1954247621454629");
-      JOB_LIST.push(() => {
-        console.log("Goto " + "https://www.facebook.com/groups/1954247621454629" + " successfully.");
-        chrome.tabs.sendMessage(tabId, { command: "removePosts" });
-      });
-    });
-  }, 60000);
-
-  chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    if (changeInfo.status === "complete") {
-      var job = JOB_LIST.pop();
-      if (job) {
-        job();
-      }
     }
-  });
+    main();
+  }
 };
-
-var removePostsMobile = function(tabId) {
-  chrome.tabs.sendMessage(tabId, { command: "removePostsMobile" });
-
-  setInterval(() => {
-    chrome.tabs.update(tabId, { url: "https://m.facebook.com/groups/1954247621454629" }, () => {
-      console.log("Goto " + "https://m.facebook.com/groups/1954247621454629");
-      JOB_LIST.push(() => {
-        console.log("Goto " + "https://m.facebook.com/groups/1954247621454629" + " successfully.");
-        chrome.tabs.sendMessage(tabId, { command: "removePostsMobile" });
-      });
-    });
-  }, 60000);
-
-  chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    if (changeInfo.status === "complete") {
-      var job = JOB_LIST.pop();
-      if (job) {
-        job();
-      }
-    }
-  });
-};
-
