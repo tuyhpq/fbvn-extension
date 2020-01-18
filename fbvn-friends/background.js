@@ -56,6 +56,7 @@ const FEATURE = {
       { id: "106584670094311", name: "Chợ ăn Cần Thơ" },
       { id: "2621702094586454", name: "Đồ cũ Tuy Hòa" },
       { id: "346843986016861", name: "Tus buồn" },
+      { id: "351563755753840", name: "Xe độ" },
       { id: "498154793692114", name: "Buff sao Liên Quân" },
       { id: "191718824567616", name: "Liên quân confess" },
       { id: "vltk2016", name: "ZSM" },
