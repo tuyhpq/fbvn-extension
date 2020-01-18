@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "dev": "webpack --mode=development --watch",
+    "dev": "webpack --mode=none --watch",
     "build": "webpack --mode=production --watch"
   },
   "keywords": [],
