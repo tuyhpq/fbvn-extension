@@ -9,13 +9,15 @@ export default {
         Common.scrollToElement(article);
         await Common.sleep(1000);
 
-        var isNormalPost =
+        var isNormalPost1 =
           // approve header
           $(article).find(`h5[data-ft='{"tn":"C"}'] span[class="fwb"]`).length === 0
           // approve body (post must be public)
           && $(article).find(`a[rel="noopener"]`).length === 0;
 
-        if (isNormalPost) {
+        var isNormalPost2 = $(article).find('div.mts').length === 0;
+
+        if (isNormalPost1 && isNormalPost2) {
           $(article).find(`div._idm`).find(`a[role="button"]`)[0].click(); // 0 is approve button
           console.log('Đã đồng ý.')
         } else {
