@@ -53,6 +53,7 @@ const FEATURE = {
    */
   BasicModerateGroups(tabId) {
     const groups = [
+      { id: "744092792625338", name: "Làm quen" },
       { id: "108807306468805", name: "LOT" },
       { id: "106584670094311", name: "Chợ ăn Cần Thơ" },
       { id: "2621702094586454", name: "Đồ cũ Tuy Hòa" },

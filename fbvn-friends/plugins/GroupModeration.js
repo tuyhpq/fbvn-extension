@@ -33,7 +33,7 @@ export default {
       if (articleList.length !== 0) {
         main();
       } else {
-        await Common.sleep(3000);
+        await Common.sleep(1000);
         chrome.runtime.sendMessage({ command: "Next" });
       }
     }
@@ -50,7 +50,7 @@ export default {
         $(approveButton).click();
         await Common.sleep(1000);
       }
-      await Common.sleep(3000);
+      await Common.sleep(1000);
       chrome.runtime.sendMessage({ command: "Next" });
     }
     main();
