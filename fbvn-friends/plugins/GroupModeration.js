@@ -3,6 +3,11 @@ import Common from './Common';
 export default {
   approvePendingPost() {
     async function main() {
+      // escape route if suspended
+      setTimeout(() => {
+        chrome.runtime.sendMessage({ command: "Next" });
+      }, 60000 * 3);
+
       await Common.sleep(1000);
       var articleList = $(`div[role="article"]`);
       for (let article of articleList) {
@@ -15,9 +20,13 @@ export default {
           // approve body (post must be public)
           && $(article).find(`a[rel="noopener"]`).length === 0;
 
+        // not share
         var isNormalPost2 = $(article).find('div.mts').length === 0;
 
-        if (isNormalPost1 && isNormalPost2) {
+        // not external link
+        var isNormalPost3 = $(article).find('a[target="_blank"]').length === 0;
+
+        if (isNormalPost1 && isNormalPost2 && isNormalPost3) {
           $(article).find(`div._idm`).find(`a[role="button"]`)[0].click(); // 0 is approve button
           console.log('Đã đồng ý.')
         } else {

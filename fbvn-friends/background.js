@@ -53,8 +53,11 @@ const FEATURE = {
    */
   BasicModerateGroups(tabId) {
     const groups = [
+      { id: "694039351025214", name: "Free Fire" },
       { id: "744092792625338", name: "Làm quen" },
       { id: "108807306468805", name: "LOT" },
+      { id: "findbfwifehusbandgf", name: "Cung đấu" },
+      { id: "116039558551577", name: "Giang Hồ Chi Mộng" },
       { id: "106584670094311", name: "Chợ ăn Cần Thơ" },
       { id: "2621702094586454", name: "Đồ cũ Tuy Hòa" },
       { id: "346843986016861", name: "Tus buồn" },
