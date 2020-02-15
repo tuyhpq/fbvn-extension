@@ -23,3 +23,19 @@ $("#btnCancelFriendRequestsSent").click(() => {
 $("#btnBasicModerateGroups").click(() => {
   chrome.runtime.sendMessage({ command: "BasicModerateGroups", tabId: currentTabId });
 });
+
+/**
+ * Thêm Bạn Bè vào Nhóm
+ */
+
+$("#btnUpdateFriendsRecent").click(() => {
+  chrome.runtime.sendMessage({ command: "UpdateFriendsRecent", tabId: currentTabId });
+});
+
+$("#btnMemberToGroupStatistics").click(() => {
+  chrome.runtime.sendMessage({ command: "MemberToGroupStatistics", tabId: currentTabId });
+});
+
+$("#btnMemberToGroup").click(() => {
+  chrome.runtime.sendMessage({ command: "MemberToGroup", tabId: currentTabId });
+});

@@ -97,5 +97,37 @@ const FEATURE = {
       });
     }
     main();
+  },
+  UpdateFriendsRecent(tabId) {
+    async function main() {
+      chrome.tabs.sendMessage(tabId, { command: "storageFriendRecent" });
+    }
+    main();
+  },
+  MemberToGroupStatistics(tabId) {
+    async function main() {
+      chrome.tabs.sendMessage(tabId, { command: "memberToGroupStatistics" });
+    }
+    main();
+  },
+  MemberToGroup(tabId) {
+    async function main() {
+      chrome.tabs.update(tabId, { url: "https://www.facebook.com/groups/116039558551577/" }, () => {
+        AddJob(() => {
+          chrome.tabs.sendMessage(tabId, { command: "inviteMemberToGroup" });
+          AddJob(() => {
+            chrome.tabs.update(tabId, { url: "https://www.facebook.com/" }, () => {
+              AddJob(() => {
+                chrome.tabs.sendMessage(tabId, { command: "restOnHomePage" });
+                AddJob(() => {
+                  main();
+                });
+              });
+            });
+          });
+        });
+      });
+    }
+    main();
   }
 };

@@ -10,7 +10,7 @@
     "128": "assets/img/icon.png"
   },
 
-  "permissions": ["tabs"],
+  "permissions": ["tabs", "storage"],
 
   "background": {
     "scripts": ["background.js"],
