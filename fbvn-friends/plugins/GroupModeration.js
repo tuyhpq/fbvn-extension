@@ -36,7 +36,7 @@ export default {
           console.log('Đã xóa!')
         }
 
-        await Common.sleep(2000);
+        await Common.sleep(1000);
       }
 
       if (articleList.length !== 0) {

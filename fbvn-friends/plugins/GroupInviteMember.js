@@ -97,11 +97,12 @@ export default {
           } else {
             if ($(`#groupsMembershipAddUndoMessage`).text() !== `${friend.name} đã được mời vào nhóm.`) {
               console.log(`Error with: ${friend.name}`);
-              return;
+              friend.hasError = true;
+            } else {
+              console.log(`${friend.name} has just been added successfully.`);
+              await Common.sleep(1 * 60000);
+              invitedCount++;
             }
-            console.log(`${friend.name} has just been added successfully.`);
-            await Common.sleep(1 * 60000);
-            invitedCount++;
           }
         }
 

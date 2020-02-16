@@ -15,7 +15,7 @@ chrome.runtime.onMessage.addListener(
     if (message.command === "Next") {
       ExecuteJob();
     } else {
-      FEATURE[message.command](message.tabId);
+      FEATURE[message.command](message.tabId, message.data);
     }
   }
 );
@@ -110,9 +110,9 @@ const FEATURE = {
     }
     main();
   },
-  MemberToGroup(tabId) {
+  MemberToGroup(tabId, data) {
     async function main() {
-      chrome.tabs.update(tabId, { url: "https://www.facebook.com/groups/116039558551577/" }, () => {
+      chrome.tabs.update(tabId, { url: `https://www.facebook.com/groups/${data.groupId}/` }, () => {
         AddJob(() => {
           chrome.tabs.sendMessage(tabId, { command: "inviteMemberToGroup" });
           AddJob(() => {

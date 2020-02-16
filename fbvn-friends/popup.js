@@ -36,6 +36,18 @@ $("#btnMemberToGroupStatistics").click(() => {
   chrome.runtime.sendMessage({ command: "MemberToGroupStatistics", tabId: currentTabId });
 });
 
+$(function() {
+  chrome.storage.local.get(null, function(result) {
+    if (result.groupId) {
+      $("#groupId").val(result.groupId);
+    }
+  });
+});
+
 $("#btnMemberToGroup").click(() => {
-  chrome.runtime.sendMessage({ command: "MemberToGroup", tabId: currentTabId });
+  var data = {
+    groupId: $("#groupId").val()
+  };
+  chrome.storage.local.set({ groupId: data.groupId });
+  chrome.runtime.sendMessage({ command: "MemberToGroup", tabId: currentTabId, data });
 });
