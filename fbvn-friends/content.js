@@ -49,7 +49,7 @@ var Features = {
   restOnHomePage() {
     async function main() {
       Common.scrollToBottom();
-      await Common.sleep(3 * 60000);
+      await Common.sleep(1 * 60000);
       chrome.runtime.sendMessage({ command: "Next" });
     }
     main();
