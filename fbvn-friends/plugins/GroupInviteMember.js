@@ -112,6 +112,7 @@ export default {
         if (invitedCount >= 3) {
           await Common.sleep(1000);
           chrome.runtime.sendMessage({ command: "Next" });
+          break;
         }
       }
     }
