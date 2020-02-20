@@ -8,8 +8,8 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
  * Quản lý Bạn Bè
  */
 
-$("#btnAddFriends").click(() => {
-  chrome.runtime.sendMessage({ command: "AddFriends", tabId: currentTabId });
+$("#btnAddFriendsAuto").click(() => {
+  chrome.runtime.sendMessage({ command: "AddFriendsAuto", tabId: currentTabId });
 });
 
 $("#btnCancelFriendRequestsSent").click(() => {
@@ -50,4 +50,8 @@ $("#btnMemberToGroup").click(() => {
   };
   chrome.storage.local.set({ groupId: data.groupId });
   chrome.runtime.sendMessage({ command: "MemberToGroup", tabId: currentTabId, data });
+});
+
+$("#btnAddFriends").click(() => {
+  chrome.runtime.sendMessage({ command: "AddFriends", tabId: currentTabId });
 });

@@ -2,7 +2,7 @@ export default {
   sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   },
-  scrollToElement(element, deviation = 80, time = 500) {
+  scrollToElement(element, deviation = 200, time = 500) {
     $([document.documentElement, document.body]).animate({
       scrollTop: $(element).offset().top - deviation
     }, time);

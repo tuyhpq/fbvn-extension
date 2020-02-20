@@ -1,7 +1,7 @@
 import Common from './Common';
 
 export default {
-  addFriends() {
+  addFriendsAuto() {
     console.log("coming soon...");
   },
   cancelFriendRequestsSent() {

@@ -22,8 +22,8 @@ jQuery.fn.extend({
 });
 
 var Features = {
-  addFriends() {
-    FriendManagement.addFriends();
+  addFriendsAuto() {
+    FriendManagement.addFriendsAuto();
   },
   cancelFriendRequestsSent() {
     FriendManagement.cancelFriendRequestsSent();
@@ -45,6 +45,9 @@ var Features = {
   },
   inviteMemberToGroup() {
     GroupInviteMember.inviteMemberToGroup();
+  },
+  addFriends() {
+    GroupInviteMember.addFriends();
   },
   restOnHomePage() {
     async function main() {

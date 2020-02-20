@@ -31,10 +31,10 @@ const FEATURE = {
   /**
    * Tự động kết bạn
    */
-  AddFriends(tabId) {
+  AddFriendsAuto(tabId) {
     chrome.tabs.update(tabId, { url: "https://m.facebook.com/friends/center/suggestions/" }, () => {
       AddJob(() => {
-        chrome.tabs.sendMessage(tabId, { command: "addFriends" });
+        chrome.tabs.sendMessage(tabId, { command: "addFriendsAuto" });
       });
     });
   },
@@ -129,5 +129,8 @@ const FEATURE = {
       });
     }
     main();
-  }
+  },
+  AddFriends(tabId) {
+    chrome.tabs.sendMessage(tabId, { command: "addFriends" });
+  },
 };

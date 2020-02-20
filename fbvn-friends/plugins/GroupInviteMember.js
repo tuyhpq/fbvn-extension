@@ -119,5 +119,35 @@ export default {
     getFriendsStorage((friends) => {
       main(friends);
     });
+  },
+  addFriends() {
+    async function main() {
+      var uiMorePagers = $(`a.uiMorePagerPrimary:visible`);
+      while (uiMorePagers.length > 0) {
+        Common.scrollToElement(uiMorePagers[0]);
+        await Common.sleep(1000);
+        Common.clickTotalLinks(uiMorePagers);
+        await Common.sleep(2000);
+        uiMorePagers = $(`a.uiMorePagerPrimary:visible`);
+      }
+
+      var friends = $(`button.FriendRequestAdd.addButton:visible`);
+      console.log(`Friends found: ${friends.length}`);
+
+      for (let i in friends) {
+        var friend = friends[i];
+        Common.scrollToElement(friend);
+        await Common.sleep(1000);
+        $(friend).click();
+
+        console.log(`Sum: ${i}`);
+        await Common.sleep(2000);
+
+        $(`button.layerConfirm[type="submit"]:visible`).click();  // confirm add friend
+        Common.clickTotalLinks($(`a[action="cancel"][role="button"]:visible`)); // 5.000 friends & warning
+        await Common.sleep(2000);
+      }
+    }
+    main();
   }
 };
