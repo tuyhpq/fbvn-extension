@@ -95,9 +95,9 @@ export default {
             Common.clickTotalLinks(errors.find(`a[action="cancel"]`));
             console.log(`${friend.name} has already been invited.`);
           } else {
-            if ($(`#groupsMembershipAddUndoMessage`).text() !== `${friend.name} đã được mời vào nhóm.`) {
+            if ($(`#groupsMembershipAddUndoMessage`).text() === "") {
               console.log(`Error with: ${friend.name}`);
-              friend.hasError = true;
+              return;
             } else {
               console.log(`${friend.name} has just been added successfully.`);
               await Common.sleep(1 * 60000);
@@ -108,6 +108,7 @@ export default {
 
         friend.added = true;
         setFriendsStorage(friends);
+        $("#groupsMembershipAddUndoMessage").remove();
 
         if (invitedCount >= 3) {
           await Common.sleep(1000);
