@@ -143,8 +143,21 @@ export default {
         console.log(`Sum: ${i}`);
         await Common.sleep(2000);
 
-        $(`button.layerConfirm[type="submit"]:visible`).click();  // confirm add friend
-        Common.clickTotalLinks($(`a[action="cancel"][role="button"]:visible`)); // 5.000 friends & warning
+        var countErrors = 0;
+        var Errors1 = $(`button.layerConfirm[type="submit"]:visible`); // confirm add friend
+        if (Errors1.length > 0) {
+          countErrors += Errors1.length;
+          Errors1.click();
+        }
+        var Errors2 = $(`a[action="cancel"][role="button"]:visible`);  // 5.000 friends & warning
+        if (Errors2.length > 0) {
+          countErrors += Errors2.length;
+          Common.clickTotalLinks(Errors2);
+        }
+        if (countErrors > 0) {
+          console.log(`Errors: ${countErrors}`);
+        }
+
         await Common.sleep(2000);
       }
     }
