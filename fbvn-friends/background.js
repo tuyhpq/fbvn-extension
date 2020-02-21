@@ -53,11 +53,13 @@ const FEATURE = {
    */
   BasicModerateGroups(tabId) {
     const groups = [
+      { id: "298297000328148", name: "COD", notApprovePost: true },
+      { id: "360848434395577", name: "Hỗ trợ PUBG", notApprovePost: true },
       { id: "694039351025214", name: "Free Fire" },
       { id: "744092792625338", name: "Làm quen" },
       { id: "108807306468805", name: "LOT" },
       { id: "findbfwifehusbandgf", name: "Cung đấu" },
-      { id: "116039558551577", name: "Giang Hồ Chi Mộng" },
+      // { id: "116039558551577", name: "Giang Hồ Chi Mộng" }, (group is removed)
       { id: "106584670094311", name: "Chợ ăn Cần Thơ" },
       { id: "2621702094586454", name: "Đồ cũ Tuy Hòa" },
       { id: "346843986016861", name: "Tus buồn" },
@@ -79,12 +81,12 @@ const FEATURE = {
       return val;
     }
     async function main() {
-      let groupId = groups[getIndex()].id;
-      chrome.tabs.update(tabId, { url: "https://www.facebook.com/groups/" + groupId + "/pending/" }, () => {
+      let group = groups[getIndex()];
+      chrome.tabs.update(tabId, { url: "https://www.facebook.com/groups/" + group.id + "/pending/" }, () => {
         AddJob(() => {
-          chrome.tabs.sendMessage(tabId, { command: "approvePendingPost" });
+          chrome.tabs.sendMessage(tabId, { command: "approvePendingPost", data: group });
           AddJob(() => {
-            chrome.tabs.update(tabId, { url: "https://www.facebook.com/groups/" + groupId + "/requests/" }, () => {
+            chrome.tabs.update(tabId, { url: "https://www.facebook.com/groups/" + group.id + "/requests/" }, () => {
               AddJob(() => {
                 chrome.tabs.sendMessage(tabId, { command: "approvePendingMember" });
                 AddJob(() => {

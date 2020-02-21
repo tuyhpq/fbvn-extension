@@ -6,7 +6,7 @@ import GroupModeration from './plugins/GroupModeration';
 import GroupInviteMember from './plugins/GroupInviteMember';
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  Features[message.command]();
+  Features[message.command](message.data);
 });
 
 jQuery.fn.extend({
@@ -28,8 +28,8 @@ var Features = {
   cancelFriendRequestsSent() {
     FriendManagement.cancelFriendRequestsSent();
   },
-  approvePendingPost() {
-    GroupModeration.approvePendingPost();
+  approvePendingPost(data) {
+    GroupModeration.approvePendingPost(data);
   },
   approvePendingMember() {
     GroupModeration.approvePendingMember();
