@@ -27,8 +27,20 @@ export default {
         // not external link
         var isNormalPost3 = $(article).find('a[target="_blank"]').length === 0;
 
+        // blacklist
+        var hasBlackList = false;
+        if (data.blackList) {
+          var contents = $(article).find(`div[data-testid="post_message"]`).text();
+          for (let text of data.blackList) {
+            if (contents.indexOf(text) > -1) {
+              hasBlackList = true;
+              break;
+            }
+          }
+        }
+
         if (isNormalPost1 && isNormalPost2 && isNormalPost3) {
-          if (data.notApprovePost) {
+          if (data.notApprovePost || hasBlackList) {
             continue;
           } else {
             $(article).find(`div._idm`).find(`a[role="button"]`)[0].click(); // 0 is approve button
