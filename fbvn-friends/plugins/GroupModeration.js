@@ -8,12 +8,12 @@ export default {
         chrome.runtime.sendMessage({ command: "Next" });
       }, 60000 * 2);
 
-      await Common.sleep(1000);
+      await Common.sleep(2000);
       var articleList = $(`div[role="article"]`);
 
       for (let article of articleList) {
         Common.scrollToElement(article);
-        await Common.sleep(800);
+        await Common.sleep(500);
 
         var isNormalPost1 =
           // approve header
@@ -32,7 +32,7 @@ export default {
         if (data.blackList) {
           var contents = $(article).find(`div[data-testid="post_message"]`).text();
           for (let text of data.blackList) {
-            if (contents.indexOf(text) > -1) {
+            if (contents.toLocaleLowerCase().indexOf(text) > -1) {
               hasBlackList = true;
               break;
             }
@@ -56,15 +56,17 @@ export default {
         await Common.sleep(500);
       }
 
-      chrome.runtime.sendMessage({ command: "Next" });
+      chrome.storage.local.set({ countRequestMember: $(`#count_badge_requests`).text() }, () => {
+        chrome.runtime.sendMessage({ command: "Next" });
+      });
     }
     main();
   },
   approvePendingMember() {
     async function main() {
-      await Common.sleep(1000);
+      await Common.sleep(2000);
       Common.scrollToElement($('#member_requests_pagelet'));
-      await Common.sleep(1000);
+      await Common.sleep(500);
 
       var approveButtonList = $('button[name="approve"][data-testid="approve_pending_member"]');
       for (let approveButton of approveButtonList) {

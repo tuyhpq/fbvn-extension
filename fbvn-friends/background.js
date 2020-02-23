@@ -54,11 +54,11 @@ const FEATURE = {
   BasicModerateGroups(tabId) {
     const groups = [
       { id: "298297000328148", name: "COD", notApprovePost: true },
-      { id: "360848434395577", name: "Hỗ trợ PUBG", notApprovePost: true },
-      { id: "694039351025214", name: "Free Fire", blackList: ['kb', 'add', 'ib', 'code', 'free'] },
-      { id: "744092792625338", name: "Làm quen", blackList: ['kb', 'add', 'ib', 'code', 'free'] },
+      // { id: "360848434395577", name: "Hỗ trợ PUBG", notApprovePost: true },
+      { id: "694039351025214", name: "Free Fire", blackList: ['kb', 'add', 'ib', 'code', 'free', 'minigame', 'mini game', 'uy tín'] },
+      { id: "744092792625338", name: "Làm quen", blackList: ['kb', 'add', /* 'ib', */ 'code', 'free', 'minigame', 'mini game', 'uy tín'] },
       { id: "108807306468805", name: "LOT" },
-      { id: "findbfwifehusbandgf", name: "Cung đấu" },
+      // { id: "findbfwifehusbandgf", name: "Cung đấu" },
       // { id: "116039558551577", name: "Giang Hồ Chi Mộng" }, (group is removed)
       { id: "106584670094311", name: "Chợ ăn Cần Thơ" },
       { id: "2621702094586454", name: "Đồ cũ Tuy Hòa" },
@@ -86,13 +86,19 @@ const FEATURE = {
         AddJob(() => {
           chrome.tabs.sendMessage(tabId, { command: "approvePendingPost", data: group });
           AddJob(() => {
-            chrome.tabs.update(tabId, { url: "https://www.facebook.com/groups/" + group.id + "/requests/" }, () => {
-              AddJob(() => {
-                chrome.tabs.sendMessage(tabId, { command: "approvePendingMember" });
-                AddJob(() => {
-                  main();
+            chrome.storage.local.get(null, function(result) {
+              if (result.countRequestMember !== '' && result.countRequestMember !== '0') {
+                chrome.tabs.update(tabId, { url: "https://www.facebook.com/groups/" + group.id + "/requests/" }, () => {
+                  AddJob(() => {
+                    chrome.tabs.sendMessage(tabId, { command: "approvePendingMember" });
+                    AddJob(() => {
+                      main();
+                    });
+                  });
                 });
-              });
+              } else {
+                main();
+              }
             });
           });
         });
