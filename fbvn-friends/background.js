@@ -8,6 +8,11 @@ function ExecuteJob() {
 }
 function AddJob(job) {
   JOBS_STACK.push(job);
+  setTimeout(() => {
+    if (JOBS_STACK.indexOf(job) > -1) {
+      ExecuteJob();
+    }
+  }, 60000 * 3);
 }
 
 chrome.runtime.onMessage.addListener(
