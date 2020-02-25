@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <style>
     body {
-      width: 360px;
+      width: 500px;
       padding-top: 15px;
       padding-bottom: 15px;
     }
@@ -21,33 +21,13 @@
   <div class="container-fluid">
     <p class="lead">
       <span class="font-weight-bold">FBVN</span>
-      <span>(Author: <a href="https://www.facebook.com/quy.gdtg">QuyHP</a>)</span>
+      <span class="small">(Tác giả: HUA PHU QUY - 0164.840.3817)</span>
     </p>
-    <div class="border border-primary mt-3 p-3">
-      <label>Quản lý Bạn Bè</label>
-      <br>
-      <button type="button" class="btn btn-primary mb-2 mr-1" id="btnAddFriendsAuto">Tự động kết bạn</button>
-      <button type="button" class="btn btn-primary mb-2 mr-1" id="btnCancelFriendRequestsSent">Hủy lời mời kết bạn đã gửi</button>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Log:</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
     </div>
-    <div class="border border-primary mt-3 p-3">
-      <label>Quản lý Nhóm</label>
-      <br>
-      <button type="button" class="btn btn-primary mb-2 ml-1" id="btnBasicModerateGroups">Duyệt bài và thành viên</button>
-    </div>
-    <div class="border border-primary mt-3 p-3">
-      <label>Thêm Bạn Bè vào Nhóm</label>
-      <br>
-      <button type="button" class="btn btn-primary mb-2 ml-1" id="btnUpdateFriendsRecent">Cập nhật Bạn Bè gần đây</button>
-      <button type="button" class="btn btn-primary mb-2 ml-1" id="btnMemberToGroupStatistics">Thống kê</button>
-      <button type="button" class="btn btn-primary mb-2 ml-1" id="btnMemberExtract20">[Trích 20]</button>
-      <div>
-        <input type="text" class="form-control mb-2" id="groupId">
-        <button type="button" class="btn btn-primary mb-2 ml-1" id="btnMemberToGroup">Mời bạn bè vào Nhóm</button>
-      </div>
-      <div>
-        <button type="button" class="btn btn-primary mb-2 ml-1" id="btnAddFriends">Thêm bạn bè</button>
-      </div>
-    </div>
+    <button type="button" class="btn btn-primary mb-2 mr-1" id="btnAddFriendsAuto">Kết bạn đề xuất</button>
   </div>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

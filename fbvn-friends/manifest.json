@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "FBVN",
+  "name": "Kết bạn đề xuất - FBVN",
   "version": "1.0",
 
-  "description": "Facebook Việt Nam",
+  "description": "Tiện ích tự động kết bạn đề xuất dựa trên nhiều tiêu chí.",
   "icons": {
     "16": "assets/img/icon.png",
     "48": "assets/img/icon.png",
@@ -31,7 +31,7 @@
     {
       "matches": ["*://*.facebook.com/*", "*://facebook.com/*"],
       "js": ["assets/js/jquery.min.js", "content.js"],
-      "css": ["content.css"]
+      "css": ["assets/css/content.css"]
     }
   ]
 }
