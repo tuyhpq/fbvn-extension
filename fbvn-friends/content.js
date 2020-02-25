@@ -43,6 +43,9 @@ var Features = {
   memberToGroupStatistics() {
     GroupInviteMember.memberToGroupStatistics();
   },
+  memberExtract20() {
+    GroupInviteMember.memberExtract20();
+  },
   inviteMemberToGroup() {
     GroupInviteMember.inviteMemberToGroup();
   },
