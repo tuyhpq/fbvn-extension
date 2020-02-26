@@ -1,3 +1,5 @@
+import ExtensionStorage from './ExtensionStorage';
+
 // Extend jQuery
 jQuery.fn.extend({
   realClick: function() {
@@ -27,5 +29,16 @@ export default {
     for (let i = 0; i < links.length; i++) {
       links[i].click();
     }
+  },
+  getLogs(next) {
+    ExtensionStorage.getField(`logs`, (obj) => {
+      next(obj.data || "");
+    })
+  },
+  addLog(log) {
+    this.getLogs((logs) => {
+      logs += log + '\n';
+      ExtensionStorage.setField(`logs`, { data: logs });
+    });
   }
 };

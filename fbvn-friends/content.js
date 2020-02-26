@@ -6,4 +6,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 var Features = {
+  addSuggestedFriends() {
+  }
 };
