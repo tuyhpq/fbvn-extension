@@ -123,6 +123,12 @@ const FEATURE = {
     }
     main();
   },
+  MemberExtract20(tabId) {
+    async function main() {
+      chrome.tabs.sendMessage(tabId, { command: "memberExtract20" });
+    }
+    main();
+  },
   MemberToGroup(tabId, data) {
     async function main() {
       chrome.tabs.update(tabId, { url: `https://www.facebook.com/groups/${data.groupId}/` }, () => {

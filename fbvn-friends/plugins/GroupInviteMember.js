@@ -62,6 +62,23 @@ export default {
     }
     main();
   },
+  memberExtract20() {
+    getFriendsStorage((friends) => {
+      var n = 0;
+      for (let id in friends) {
+        let friend = friends[id];
+        if (!friend.added) {
+          console.log(friend.name);
+          friend.added = true;
+          n++;
+        }
+        if (n >= 20) {
+          break;
+        }
+      }
+      setFriendsStorage(friends);
+    });
+  },
   inviteMemberToGroup() {
     async function main(friends) {
       let input = $(`input[data-testid="GROUP_ADD_MEMBER_TYPEAHEAD_INPUT"]`);

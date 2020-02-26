@@ -36,6 +36,10 @@ $("#btnMemberToGroupStatistics").click(() => {
   chrome.runtime.sendMessage({ command: "MemberToGroupStatistics", tabId: currentTabId });
 });
 
+$("#btnMemberExtract20").click(() => {
+  chrome.runtime.sendMessage({ command: "MemberExtract20", tabId: currentTabId });
+});
+
 $(function() {
   chrome.storage.local.get(null, function(result) {
     if (result.groupId) {
