@@ -60,8 +60,8 @@ const FEATURE = {
     const groups = [
       { id: "298297000328148", name: "COD", notApprovePost: true },
       // { id: "360848434395577", name: "Hỗ trợ PUBG", notApprovePost: true },
-      { id: "694039351025214", name: "Free Fire", blackList: ['kb', 'add', 'ib', 'code', 'free', 'minigame', 'mini game', 'uy tín'] },
-      { id: "744092792625338", name: "Làm quen", blackList: ['kb', 'add', /* 'ib', */ 'code', 'free', 'minigame', 'mini game', 'uy tín'] },
+      { id: "694039351025214", name: "Free Fire", blackList: ['kb', 'add', 'ib', 'code', 'free', 'minigame', 'mini game', 'uy tín', 'link', 'xoxo', 'chấm'] },
+      { id: "744092792625338", name: "Làm quen", blackList: ['kb', 'add', 'ib', 'code', 'free', 'minigame', 'mini game', 'uy tín', 'link', 'xoxo', 'chấm'] },
       { id: "108807306468805", name: "LOT" },
       // { id: "findbfwifehusbandgf", name: "Cung đấu" },
       // { id: "116039558551577", name: "Giang Hồ Chi Mộng" }, (group is removed)
