@@ -18,6 +18,7 @@ export default {
     return new Promise(resolve => setTimeout(resolve, ms));
   },
   scrollToElement(element, deviation = 200, time = 500) {
+    $(element).addClass("bg-red");
     $([document.documentElement, document.body]).animate({
       scrollTop: $(element).offset().top - deviation
     }, time);
