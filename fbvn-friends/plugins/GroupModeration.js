@@ -68,7 +68,7 @@ export default {
       Common.scrollToElement($('#member_requests_pagelet'));
       await Common.sleep(500);
 
-      var approveButtonList = $('button[name="approve"][data-testid="approve_pending_member"]');
+      var approveButtonList = $('button[name="approve"][type="submit"]:visible');
       for (let approveButton of approveButtonList) {
         $(approveButton).click();
         await Common.sleep(1000);
