@@ -21,6 +21,18 @@ jQuery.fn.extend({
   }
 });
 
+jQuery.fn.extend({
+  realHover: function() {
+    const EVENTS = ["hover", "mouseover"];
+    return this.each(function() {
+      for (let event of EVENTS) {
+        let e = new Event(event, { view: window, bubbles: true, cancelable: false });
+        this.dispatchEvent(e);
+      }
+    });
+  }
+});
+
 var Features = {
   addFriendsAuto() {
     FriendManagement.addFriendsAuto();
@@ -51,6 +63,9 @@ var Features = {
   },
   addFriends() {
     GroupInviteMember.addFriends();
+  },
+  addFriendsGroup() {
+    GroupInviteMember.addFriendsGroup();
   },
   restOnHomePage() {
     async function main() {

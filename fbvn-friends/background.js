@@ -171,4 +171,7 @@ const FEATURE = {
   AddFriends(tabId) {
     chrome.tabs.sendMessage(tabId, { command: "addFriends" });
   },
+  AddFriendsFromGroup(tabId) {
+    chrome.tabs.sendMessage(tabId, { command: "addFriendsGroup" });
+  },
 };
