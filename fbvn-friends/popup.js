@@ -63,3 +63,7 @@ $("#btnAddFriends").click(() => {
 $("#btnAddFriendsFromGroup").click(() => {
   chrome.runtime.sendMessage({ command: "AddFriendsFromGroup", tabId: currentTabId });
 });
+
+$("#btnStoreRecentFriends").click(() => {
+  chrome.runtime.sendMessage({ command: "StoreRecentFriends", tabId: currentTabId });
+});

@@ -67,6 +67,9 @@ var Features = {
   addFriendsGroup() {
     GroupInviteMember.addFriendsGroup();
   },
+  storeRecentFriends() {
+    GroupInviteMember.storeRecentFriends();
+  },
   restOnHomePage() {
     async function main() {
       Common.scrollToBottom();
