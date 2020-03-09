@@ -141,7 +141,7 @@ export default {
   addFriends() {
     async function main() {
       var uiMorePagers = $(`a.uiMorePagerPrimary:visible`);
-      while (uiMorePagers.length > 0) {
+      while (uiMorePagers.length > 0 && $(`button.FriendRequestAdd.addButton:visible`).length < 1000) {
         Common.scrollToElement(uiMorePagers[0]);
         await Common.sleep(1000);
         Common.clickTotalLinks(uiMorePagers);
