@@ -180,5 +180,54 @@ export default {
       }
     }
     main();
+  },
+  addFriendsGroup() {
+    async function main() {
+      var listFriends = $(`div#groupsMemberSection_recently_joined`).find(`div[data-name="GroupProfileGridItem"]`);
+
+      for (let friend of listFriends) {
+        Common.scrollToElement(friend);
+        await Common.sleep(500);
+
+        $(friend).find(`div._60ri a[rel="dialog"]`).realHover();
+        await Common.sleep(2000);
+
+        var areaOfFriend = $(`div.uiContextualLayer:visible`);
+        areaOfFriend.find(`button.FriendRequestAdd.addButton[type="button"]:visible`).click();
+        await Common.sleep(1000);
+
+        $(`button.layerConfirm[type="submit"]:visible`).click(); // confirm add friend
+        Common.clickTotalLinks($(`a[action="cancel"][role="button"]:visible`));  // 5.000 friends & warning
+        await Common.sleep(1000);
+      }
+    }
+    main();
+  },
+  storeRecentFriends() {
+    async function main() {
+      var friendsRecent = $(`ul.uiList:visible li._698`);
+      var friends = [];
+
+      for (let friend of friendsRecent) {
+        var main = $(friend).find(`div.uiProfileBlockContent div.fsl.fwb.fcb > a`);
+
+        var id = main.attr("data-gt").match(/\"eng_tid\"\:\"([0-9]*)\"/).pop();
+        var name = main.text();
+        var imgId = $(friend).find(`img[role="img"]`).attr(`src`).match(/0\/([a-z0-9_]*)\.jpg\?/).pop();
+        if (!imgId) {
+          console.log(`Có lỗi IMG !!!`);
+          return;
+        }
+
+        friends.push({ id, name, imgId });
+      }
+
+      chrome.storage.local.set({ recentFriends: JSON.stringify(friends) }, () => {
+        chrome.storage.local.get(null, function(result) {
+          console.log(JSON.parse(result.recentFriends));
+        });
+      });
+    }
+    main();
   }
 };
