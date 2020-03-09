@@ -229,5 +229,37 @@ export default {
       });
     }
     main();
+  },
+  inputRecentFriends() {
+    async function main() {
+      var input = $(`#groupMembersInput:visible`);
+
+      chrome.storage.local.get(null, async (result) => {
+        var recentFriends = JSON.parse(result.recentFriends);
+
+        for (let friend of recentFriends) {
+          input.val(friend.name);
+          await Common.sleep(500);
+
+          input.realClick();
+          await Common.sleep(1000);
+
+          let list = $(`div.uiContextualLayer`).find(`li.user[title="${friend.name}"]:visible`);
+          console.log(list.length);
+          for (let item of list) {
+            let imgId = $(item).find(`img`).attr(`src`).match(/0\/([a-z0-9_]*)\.jpg\?/).pop();
+            console.log(imgId, friend.imgId);
+            if (imgId === friend.imgId) {
+              console.log("Chuẩn bị click!");
+              $(item).realClick();
+              await Common.sleep(1000);
+              break;
+            }
+            await Common.sleep(3000);
+          }
+        }
+      });
+    }
+    main();
   }
 };

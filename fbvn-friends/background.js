@@ -85,7 +85,7 @@ const FEATURE = {
       // { id: "findbfwifehusbandgf", name: "Cung đấu" }, // đã bán
       // { id: "116039558551577", name: "Giang Hồ Chi Mộng" }, (group is removed)
       { id: "106584670094311", name: "Chợ ăn Cần Thơ" },
-      { id: "2621702094586454", name: "Đồ cũ Tuy Hòa" },
+      // { id: "2621702094586454", name: "Đồ cũ Tuy Hòa" }, đã bán
       { id: "346843986016861", name: "Tus buồn", blackList: BLACK_LIST },
       // { id: "351563755753840", name: "Xe độ" }, // đã bán
       { id: "498154793692114", name: "Buff sao Liên Quân" },
@@ -176,5 +176,8 @@ const FEATURE = {
   },
   StoreRecentFriends(tabId) {
     chrome.tabs.sendMessage(tabId, { command: "storeRecentFriends" });
+  },
+  InputRecentFriends(tabId) {
+    chrome.tabs.sendMessage(tabId, { command: "inputRecentFriends" });
   }
 };
