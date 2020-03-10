@@ -17,6 +17,7 @@ module.exports = {
       { from: './fbvn-friends/manifest.json', to: 'manifest.json' },
       { from: './fbvn-friends/popup.html', to: 'popup.html' },
       { from: './fbvn-friends/assets/img', to: 'assets/img' },
+      { from: './fbvn-friends/assets/css', to: 'assets/css' },
       { from: './node_modules/bootstrap/dist/css/bootstrap.min.css', to: 'assets/css/bootstrap.min.css' },
       { from: './node_modules/jquery/dist/jquery.min.js', to: 'assets/js/jquery.min.js' },
       { from: './node_modules/popper.js/dist/umd/popper.min.js', to: 'assets/js/popper.min.js' },
