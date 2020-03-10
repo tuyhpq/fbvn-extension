@@ -33,5 +33,7 @@
       "js": ["assets/js/jquery.min.js", "content.js"],
       "css": ["assets/css/content.css"]
     }
-  ]
+  ],
+
+  "options_page": "options.html"
 }
