@@ -35,4 +35,31 @@ export default {
     }
     main();
   },
+  storeRecentFriends() {
+    async function main() {
+      var friendsRecent = $(`ul.uiList:visible li._698:visible`);
+      var friends = [];
+
+      for (let friendBtn of friendsRecent) {
+        var main = $(friendBtn).find(`div.uiProfileBlockContent div.fsl.fwb.fcb > a`);
+
+        var id = main.attr("data-gt").match(/\"eng_tid\"\:\"([0-9]*)\"/).pop();
+        var name = main.text();
+        var imgId = $(friendBtn).find(`img[role="img"]`).attr(`src`).match(/0\/([a-z0-9_]*)\.jpg\?/).pop();
+        if (!imgId) {
+          Common.addLog(`Có lỗi get IMG ID !!!`);
+          return;
+        }
+
+        friends.push({ id, name, imgId });
+      }
+
+      chrome.storage.local.set({ recentFriends: JSON.stringify(friends) }, () => {
+        chrome.storage.local.get(null, function(result) {
+          console.log(JSON.parse(result.recentFriends));
+        });
+      });
+    }
+    main();
+  }
 };

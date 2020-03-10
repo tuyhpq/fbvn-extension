@@ -18,6 +18,9 @@ setInterval(() => {
 $('button').click((e) => {
   let group = $(e.target).attr("data-group");
   let feature = $(e.target).attr("data-feature");
-  let data = null;
+  let data = {};
+  $('input').each(function() {
+    data[$(this).attr('id')] = $(this).val();
+  });
   chrome.runtime.sendMessage({ tabId: currentTabId, group, feature, data });
 });
