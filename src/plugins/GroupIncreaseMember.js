@@ -61,5 +61,39 @@ export default {
       });
     }
     main();
+  },
+  inputRecentFriendsForGroup() {
+    async function main() {
+      var input = $(`#groupMembersInput:visible`);
+
+      chrome.storage.local.get(null, async (result) => {
+        var recentFriends = JSON.parse(result.recentFriends);
+
+        for (let friend of recentFriends) {
+          input.val(friend.name);
+          input.realClick();
+          if (friend === recentFriends[0]) {
+            await Common.sleep(5000);
+          } else {
+            await Common.sleep(1000);
+          }
+
+          let list = $(`div.uiContextualLayer`).find(`li.user[title="${friend.name}"]:visible`);
+          for (let item of list) {
+            let imgId = $(item).find(`img`).attr(`src`).match(/0\/([a-z0-9_]*)\.jpg\?/).pop();
+            if (imgId === friend.imgId) {
+              $(item).realHover();
+              $(item).realClick();
+              await Common.sleep(1000);
+              break;
+            }
+            if (item === list[list.length - 1]) {
+              Common.addLog(`Lỗi: ${friend.name}`);
+            }
+          }
+        }
+      });
+    }
+    main();
   }
 };
