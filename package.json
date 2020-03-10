@@ -1,5 +1,5 @@
 {
-  "name": "fbvn-extension",
+  "name": "fbvn",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -8,7 +8,7 @@
     "build": "webpack --mode=production --watch"
   },
   "keywords": [],
-  "author": "",
+  "author": "QUYHP",
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^4.3.1",
@@ -18,6 +18,7 @@
   "devDependencies": {
     "copy-webpack-plugin": "^5.0.4",
     "css-loader": "^3.2.0",
+    "dotenv": "^8.2.0",
     "style-loader": "^1.0.0",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.9"
