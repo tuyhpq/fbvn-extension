@@ -1,7 +1,9 @@
+/* Facebook header */
 ._2s1x ._2s1y {
   background-color: #03041f !important;
 }
 
-.bg-red {
+/* Background focused */
+.bg-focus {
   background-color: red !important;
 }

@@ -7,12 +7,17 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
   currentTabId = tabs[0].id;
 });
 
+// Handle logs
 setInterval(() => {
   Common.getLogs((logs) => {
-    $(`#logsArea`).val(logs);
+    $('#logsArea').val(logs);
   });
 }, 500);
 
-$(`#addSuggestedFriends`).click(() => {
-  chrome.tabs.sendMessage(currentTabId, { command: `addSuggestedFriends` });
+// Handle events
+$('button').click((e) => {
+  let group = $(e.target).attr("data-group");
+  let feature = $(e.target).attr("data-feature");
+  let data = null;
+  chrome.runtime.sendMessage({ tabId: currentTabId, group, feature, data });
 });

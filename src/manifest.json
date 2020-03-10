@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "Kết bạn đề xuất - FBVN",
+  "name": "FBVN-Core",
   "version": "1.0",
 
-  "description": "Tiện ích tự động kết bạn đề xuất dựa trên nhiều tiêu chí.",
+  "description": "Core",
   "icons": {
     "16": "assets/img/icon.png",
     "48": "assets/img/icon.png",
