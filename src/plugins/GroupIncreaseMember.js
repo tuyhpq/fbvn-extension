@@ -67,13 +67,11 @@ export default {
 
         var id = main.attr("data-gt").match(/\"eng_tid\"\:\"([0-9]*)\"/).pop();
         var name = main.text();
-        var imgId = $(friendBtn).find(`img[role="img"]`).attr(`src`).match(/0\/([a-z0-9_]*)\.jpg\?/).pop();
-        if (!imgId) {
-          Common.addLog(`Có lỗi get IMG ID !!!`);
-          return;
+        var imgId = $(friendBtn).find(`img[role="img"]`).attr(`src`).match(/0\/([a-z0-9_]*)\.jpg\?/);
+        if (imgId && imgId.length > 0) {
+          imgId = imgId.pop();
+          friends.push({ id, name, imgId });
         }
-
-        friends.push({ id, name, imgId });
       }
 
       chrome.storage.local.set({ recentFriends: JSON.stringify(friends) }, () => {
