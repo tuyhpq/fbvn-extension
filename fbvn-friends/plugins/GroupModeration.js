@@ -39,7 +39,19 @@ export default {
           }
         }
 
-        if (isNormalPost1 && isNormalPost2 && isNormalPost3) {
+        // rejects
+        var hasReject = false;
+        if (data.rejects) {
+          var contents = $(article).find(`div[data-testid="post_message"]`).text();
+          for (let text of data.rejects) {
+            if (contents.toLocaleLowerCase().indexOf(text) > -1) {
+              hasReject = true;
+              break;
+            }
+          }
+        }
+
+        if (isNormalPost1 && isNormalPost2 && isNormalPost3 && !hasReject) {
           if (data.notApprovePost || hasBlackList) {
             continue;
           } else {
