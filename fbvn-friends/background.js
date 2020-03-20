@@ -77,7 +77,7 @@ const FEATURE = {
     ];
 
     const groups = [
-      { id: "qv98vn", name: "Mua bán PUBG" },
+      // { id: "qv98vn", name: "Mua bán PUBG" }, đã bán
       { id: "298297000328148", name: "COD", notApprovePost: true },
       { id: "360848434395577", name: "Hỗ trợ PUBG", notApprovePost: true },
       { id: "694039351025214", name: "Free Fire", blackList: BLACK_LIST },
@@ -91,7 +91,7 @@ const FEATURE = {
       // { id: "351563755753840", name: "Xe độ" }, // đã bán
       { id: "498154793692114", name: "Buff sao Liên Quân" },
       { id: "191718824567616", name: "Liên quân confess" },
-      { id: "vltk2016", name: "ZSM" },
+      // { id: "vltk2016", name: "ZSM" }, đã bán
       // { id: "danh.tuong.3q.vng", name: "Danh tướng" }, // đã bán
       { id: "ccht.garena", name: "FF mua bán" },
       { id: "1954247621454629", name: "FF cộng đồng" },
