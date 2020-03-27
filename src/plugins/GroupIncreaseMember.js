@@ -70,7 +70,7 @@ export default {
         var imgId = $(friendBtn).find(`img[role="img"]`).attr(`src`).match(/0\/([a-z0-9_]*)\.jpg\?/);
         if (imgId && imgId.length > 0) {
           imgId = imgId.pop();
-          friends.push({ id, name, imgId });
+          friends.push({ no: friends.length + 1, id, name, imgId });
         }
       }
 
@@ -100,7 +100,12 @@ export default {
 
           let list = $(`div.uiContextualLayer`).find(`li.user[title="${friend.name}"]:visible`);
           for (let item of list) {
-            let imgId = $(item).find(`img`).attr(`src`).match(/0\/([a-z0-9_]*)\.jpg\?/).pop();
+            let imgId = $(item).find(`img`).attr(`src`).match(/0\/([a-z0-9_]*)\.jpg\?/);
+            if (imgId && imgId.length > 0) {
+              imgId = imgId.pop();
+            } else {
+              continue;
+            }
             if (imgId === friend.imgId) {
               $(item).realHover();
               $(item).realClick();
