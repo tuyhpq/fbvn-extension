@@ -120,5 +120,33 @@ export default {
       });
     }
     main();
+  },
+  reactPost() {
+    async function main() {
+      var posts = $(`div[role="article"]:not([aria-label="Comment"])[data-fte="1"]:visible`);
+
+      for (let post of posts) {
+        post = $(post).find(`._1dnh a[role="button"]._6a-y:visible`)[0];
+        if ($(post).attr(`aria-pressed`) === 'true') {
+          continue;
+        }
+
+        Common.scrollToElement(post, undefined, undefined, false);
+        $(post).realHover(post);
+        await Common.sleep(2000);
+
+        let reacts = $(`div.uiLayer:not(.hidden_elem) div[aria-label="Reactions"][role="toolbar"]:visible > span:visible`);
+        $(reacts[Common.random(0, 3)]).realClick();
+        await Common.sleep(2000);
+      }
+
+      Common.scrollToBottom();
+      await Common.sleep(3000);
+
+      if (posts.length < 40) {
+        main();
+      }
+    }
+    main();
   }
 };

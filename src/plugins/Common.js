@@ -10,8 +10,10 @@ export default {
     return new Promise(resolve => setTimeout(resolve, ms));
   },
 
-  scrollToElement(element, deviation = 200, time = 500) {
-    $(element).addClass("bg-focus");
+  scrollToElement(element, deviation = 200, time = 500, addClass = true) {
+    if (addClass) {
+      $(element).addClass("bg-focus");
+    }
     $([document.documentElement, document.body]).animate({
       scrollTop: $(element).offset().top - deviation
     }, time);
@@ -32,5 +34,9 @@ export default {
       logs += log + '\n';
       ExtensionStorage.setField(`logs`, { data: logs });
     });
+  },
+
+  random(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 };
