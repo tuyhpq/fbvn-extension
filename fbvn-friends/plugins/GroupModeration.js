@@ -2,10 +2,13 @@ import Common from './Common';
 
 export default {
   approvePendingPost(data) {
+    let loop = data.loop;
     async function main() {
       // escape route if suspended
       setTimeout(() => {
-        chrome.runtime.sendMessage({ command: "Next" });
+        chrome.storage.local.set({ countRequestMember: $(`#count_badge_requests`).text() }, () => {
+          chrome.runtime.sendMessage({ command: "Next" });
+        });
       }, 60000 * 2);
 
       await Common.sleep(2000);
@@ -51,8 +54,21 @@ export default {
           }
         }
 
+        // approves
+        var hasApproves = false;
+        if (data.approves) {
+          var contents = $(article).find(`div[data-testid="post_message"]`).text();
+          for (let text of data.approves) {
+            if (contents.toLocaleLowerCase().indexOf(text) > -1) {
+              hasApproves = true;
+              break;
+            }
+          }
+        }
+
         if (isNormalPost1 && isNormalPost2 && isNormalPost3 && !hasReject) {
-          if (data.notApprovePost || hasBlackList) {
+          if (!hasApproves && (data.notApprovePost || hasBlackList)) {
+            $(article).remove();
             continue;
           } else {
             $(article).find(`div._idm`).find(`a[role="button"]`)[0].click(); // 0 is approve button
@@ -66,11 +82,19 @@ export default {
         }
 
         await Common.sleep(500);
+        $(article).remove();
       }
 
-      chrome.storage.local.set({ countRequestMember: $(`#count_badge_requests`).text() }, () => {
-        chrome.runtime.sendMessage({ command: "Next" });
-      });
+      if (loop && --loop > 0) {
+        Common.scrollToBottom();
+        await Common.sleep(3000);
+        main();
+      } else {
+        chrome.storage.local.set({ countRequestMember: $(`#count_badge_requests`).text() }, () => {
+          chrome.runtime.sendMessage({ command: "Next" });
+        });
+      }
+
     }
     main();
   },

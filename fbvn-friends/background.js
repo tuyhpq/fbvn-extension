@@ -75,13 +75,29 @@ const FEATURE = {
       'dâm',
       'show'
     ];
-    const REJECTS = ['mua acc', 'mua nick', 'bán acc', 'bán nick', 'mua ib', 'uy tín 100%', 'miễn phí 100%', 'kc miễn phí'];
+    const REJECTS = [
+      'mua acc',
+      'mua nick',
+      'bán acc',
+      'bán nick',
+      'mua ib',
+      'uy tín 100%',
+      'miễn phí 100%',
+      'kc miễn phí',
+      'mua kim cương',
+      'event tặng ac'
+    ];
+    const APPROVES = [
+      'tuyển thành viên',
+      'tuyển tv',
+      'ttv'
+    ];
 
     const groups = [
-      { id: "694039351025214", name: "Free Fire", blackList: BLACK_LIST, rejects: REJECTS },
+      { id: "694039351025214", name: "Free Fire", blackList: BLACK_LIST, rejects: REJECTS, approves: APPROVES, loop: 3 },
       // { id: "qv98vn", name: "Mua bán PUBG" }, đã bán
       { id: "298297000328148", name: "COD", notApprovePost: true },
-      { id: "360848434395577", name: "Hỗ trợ PUBG", notApprovePost: true },
+      { id: "360848434395577", name: "Hỗ trợ PUBG", notApprovePost: true, approves: ['acc'] },
       { id: "744092792625338", name: "Làm quen", blackList: BLACK_LIST },
       { id: "108807306468805", name: "LOT" },
       // { id: "findbfwifehusbandgf", name: "Cung đấu" }, // đã bán
