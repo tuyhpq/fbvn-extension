@@ -85,7 +85,10 @@ const FEATURE = {
       'miễn phí 100%',
       'kc miễn phí',
       'mua kim cương',
-      'event tặng ac'
+      'event tặng ac',
+      'kim cương giá rẻ',
+      'ai mua thì',
+      'nhận quà'
     ];
     const APPROVES = [
       'tuyển thành viên',
@@ -145,6 +148,12 @@ const FEATURE = {
           });
         });
       });
+    }
+    main();
+  },
+  QuicklyModerateGroups(tabId) {
+    async function main() {
+      chrome.tabs.sendMessage(tabId, { command: "quicklyModerateGroups" });
     }
     main();
   },

@@ -46,6 +46,9 @@ var Features = {
   approvePendingMember() {
     GroupModeration.approvePendingMember();
   },
+  quicklyModerateGroups() {
+    GroupModeration.quicklyModerateGroups();
+  },
   storageFriendRecent() {
     GroupInviteMember.storageFriendRecent();
   },

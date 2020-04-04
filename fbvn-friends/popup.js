@@ -24,6 +24,10 @@ $("#btnBasicModerateGroups").click(() => {
   chrome.runtime.sendMessage({ command: "BasicModerateGroups", tabId: currentTabId });
 });
 
+$("#btnQuicklyModerateGroups").click(() => {
+  chrome.runtime.sendMessage({ command: "QuicklyModerateGroups", tabId: currentTabId });
+});
+
 /**
  * Thêm Bạn Bè vào Nhóm
  */

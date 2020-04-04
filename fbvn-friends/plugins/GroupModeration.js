@@ -98,6 +98,47 @@ export default {
     }
     main();
   },
+  quicklyModerateGroups() {
+    const BLACK_LIST = [
+      'kb',
+      'add',
+      'kết bạn',
+      'ib',
+      'code',
+      'free',
+      'miễn phí',
+      'minigame',
+      'mini game',
+      'uy tín',
+      'link',
+      'clip',
+      'xoxo',
+      'chấm',
+      'dâm',
+      'show'
+    ];
+    const REJECTS = [
+      'mua acc',
+      'mua nick',
+      'bán acc',
+      'bán nick',
+      'mua ib',
+      'uy tín 100%',
+      'miễn phí 100%',
+      'kc miễn phí',
+      'mua kim cương',
+      'event tặng ac',
+      'kim cương giá rẻ',
+      'ai mua thì',
+      'nhận quà'
+    ];
+    const APPROVES = [
+      'tuyển thành viên',
+      'tuyển tv',
+      'ttv'
+    ];
+    this.approvePendingPost({ blackList: BLACK_LIST, rejects: REJECTS, approves: APPROVES, loop: 999999 });
+  },
   approvePendingMember() {
     async function main() {
       await Common.sleep(2000);
