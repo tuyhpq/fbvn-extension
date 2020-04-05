@@ -100,7 +100,7 @@ const FEATURE = {
       { id: "694039351025214", name: "Free Fire", blackList: BLACK_LIST, rejects: REJECTS, approves: APPROVES, loop: 3 },
       // { id: "qv98vn", name: "Mua bán PUBG" }, đã bán
       { id: "298297000328148", name: "COD", notApprovePost: true },
-      { id: "360848434395577", name: "Hỗ trợ PUBG", notApprovePost: true, approves: ['acc'] },
+      { id: "360848434395577", name: "Hỗ trợ PUBG", approves: ['acc'] },
       { id: "744092792625338", name: "Làm quen", blackList: BLACK_LIST },
       { id: "108807306468805", name: "LOT" },
       // { id: "findbfwifehusbandgf", name: "Cung đấu" }, // đã bán
