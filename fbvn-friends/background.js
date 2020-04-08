@@ -73,7 +73,8 @@ const FEATURE = {
       'xoxo',
       'chấm',
       'dâm',
-      'show'
+      'show',
+      'tặng'
     ];
     const REJECTS = [
       'mua acc',
@@ -88,7 +89,9 @@ const FEATURE = {
       'event tặng ac',
       'kim cương giá rẻ',
       'ai mua thì',
-      'nhận quà'
+      'nhận quà',
+      'nhận thẻ cào',
+      'tặng thẻ cào'
     ];
     const APPROVES = [
       'tuyển thành viên',
