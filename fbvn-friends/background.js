@@ -77,9 +77,9 @@ const FEATURE = {
       'tặng'
     ];
     const REJECTS = [
-      'mua acc',
+      'mua ac',
       'mua nick',
-      'bán acc',
+      'bán ac',
       'bán nick',
       'mua ib',
       'uy tín 100%',
@@ -91,7 +91,20 @@ const FEATURE = {
       'ai mua thì',
       'nhận quà',
       'nhận thẻ cào',
-      'tặng thẻ cào'
+      'tặng thẻ cào',
+      'bốc phốt',
+      'dkm',
+      'đkm',
+      'dcm',
+      'đcm',
+      'đm',
+      'dm',
+      'lồn',
+      'lozz',
+      'óc chó',
+      'súc vật',
+      'lừa đảo',
+      'trẩu'
     ];
     const APPROVES = [
       'tuyển thành viên',
@@ -106,6 +119,10 @@ const FEATURE = {
       { id: "360848434395577", name: "Hỗ trợ PUBG", approves: ['acc'] },
       { id: "744092792625338", name: "Làm quen", blackList: BLACK_LIST },
       { id: "108807306468805", name: "LOT" },
+      { id: "486751422133880", name: "Hack FF" },
+      { id: "1129744734043345", name: "Ngắm Trai" },
+      { id: "3120470631310759", name: "Vitamin" },
+      { id: "hahahahahihi", name: "Cà khịa", notApprovePost: true },
       // { id: "findbfwifehusbandgf", name: "Cung đấu" }, // đã bán
       // { id: "116039558551577", name: "Giang Hồ Chi Mộng" }, (group is removed)
       { id: "106584670094311", name: "Chợ ăn Cần Thơ" },

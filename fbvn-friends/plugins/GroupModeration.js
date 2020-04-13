@@ -119,9 +119,9 @@ export default {
       'tặng'
     ];
     const REJECTS = [
-      'mua acc',
+      'mua ac',
       'mua nick',
-      'bán acc',
+      'bán ac',
       'bán nick',
       'mua ib',
       'uy tín 100%',
@@ -133,7 +133,20 @@ export default {
       'ai mua thì',
       'nhận quà',
       'nhận thẻ cào',
-      'tặng thẻ cào'
+      'tặng thẻ cào',
+      'bốc phốt',
+      'dkm',
+      'đkm',
+      'dcm',
+      'đcm',
+      'đm',
+      'dm',
+      'lồn',
+      'lozz',
+      'óc chó',
+      'súc vật',
+      'lừa đảo',
+      'trẩu'
     ];
     const APPROVES = [
       'tuyển thành viên',
