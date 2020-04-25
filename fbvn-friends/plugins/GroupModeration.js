@@ -124,6 +124,8 @@ export default {
       'bán ac',
       'bán nick',
       'mua ib',
+      'cần bán',
+      'cần mua',
       'uy tín 100%',
       'miễn phí 100%',
       'kc miễn phí',
@@ -146,7 +148,9 @@ export default {
       'óc chó',
       'súc vật',
       'lừa đảo',
-      'trẩu'
+      'trẩu',
+      'tuyển dụng',
+      'kiếm tiền'
     ];
     const APPROVES = [
       'tuyển thành viên',

@@ -82,6 +82,8 @@ const FEATURE = {
       'bán ac',
       'bán nick',
       'mua ib',
+      'cần bán',
+      'cần mua',
       'uy tín 100%',
       'miễn phí 100%',
       'kc miễn phí',
@@ -104,7 +106,9 @@ const FEATURE = {
       'óc chó',
       'súc vật',
       'lừa đảo',
-      'trẩu'
+      'trẩu',
+      'tuyển dụng',
+      'kiếm tiền'
     ];
     const APPROVES = [
       'tuyển thành viên',
@@ -119,8 +123,8 @@ const FEATURE = {
       { id: "360848434395577", name: "Hỗ trợ PUBG", approves: ['acc'] },
       { id: "744092792625338", name: "Làm quen", blackList: BLACK_LIST },
       { id: "108807306468805", name: "LOT" },
-      { id: "486751422133880", name: "Hack FF" },
-      { id: "1129744734043345", name: "Ngắm Trai" },
+      // { id: "486751422133880", name: "Hack FF" }, đã bị khóa
+      // { id: "1129744734043345", name: "Ngắm Trai" }, đã bán
       { id: "3120470631310759", name: "Vitamin" },
       { id: "hahahahahihi", name: "Cà khịa", notApprovePost: true },
       // { id: "findbfwifehusbandgf", name: "Cung đấu" }, // đã bán
