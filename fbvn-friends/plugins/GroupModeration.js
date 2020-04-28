@@ -150,7 +150,8 @@ export default {
       'lừa đảo',
       'trẩu',
       'tuyển dụng',
-      'kiếm tiền'
+      'kiếm tiền',
+      'liên hệ'
     ];
     const APPROVES = [
       'tuyển thành viên',
