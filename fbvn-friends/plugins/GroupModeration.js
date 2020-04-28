@@ -143,6 +143,7 @@ export default {
       'đcm',
       'đm',
       'dm',
+      'địt mẹ',
       'lồn',
       'lozz',
       'óc chó',
