@@ -143,6 +143,7 @@ export default {
       'đcm',
       'đm',
       'dm',
+      'địt mẹ',
       'lồn',
       'lozz',
       'óc chó',
@@ -150,7 +151,8 @@ export default {
       'lừa đảo',
       'trẩu',
       'tuyển dụng',
-      'kiếm tiền'
+      'kiếm tiền',
+      'liên hệ'
     ];
     const APPROVES = [
       'tuyển thành viên',

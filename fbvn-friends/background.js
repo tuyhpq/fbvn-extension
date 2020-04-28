@@ -101,6 +101,7 @@ const FEATURE = {
       'đcm',
       'đm',
       'dm',
+      'địt mẹ',
       'lồn',
       'lozz',
       'óc chó',
@@ -108,7 +109,8 @@ const FEATURE = {
       'lừa đảo',
       'trẩu',
       'tuyển dụng',
-      'kiếm tiền'
+      'kiếm tiền',
+      'liên hệ'
     ];
     const APPROVES = [
       'tuyển thành viên',
