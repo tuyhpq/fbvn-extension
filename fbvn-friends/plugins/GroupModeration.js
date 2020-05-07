@@ -53,6 +53,9 @@ export default {
             }
           }
         }
+        if (contents.trim().length < 2) {
+          hasReject = true;
+        }
 
         // approves
         var hasApproves = false;
@@ -143,6 +146,7 @@ export default {
       'đcm',
       'đm',
       'dm',
+      'cc',
       'địt mẹ',
       'lồn',
       'lozz',

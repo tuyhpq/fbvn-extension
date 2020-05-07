@@ -101,6 +101,7 @@ const FEATURE = {
       'đcm',
       'đm',
       'dm',
+      'cc',
       'địt mẹ',
       'lồn',
       'lozz',
