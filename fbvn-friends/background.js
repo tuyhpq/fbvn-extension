@@ -82,6 +82,8 @@ const FEATURE = {
       'bán ac',
       'bán nick',
       'mua ib',
+      'ai mua',
+      'ai bán',
       'cần bán',
       'cần mua',
       'uy tín 100%',

@@ -53,7 +53,7 @@ export default {
             }
           }
         }
-        if (contents.trim().length < 2) {
+        if ($(article).find(`div[data-testid="post_message"]`).text().trim().length < 2) {
           hasReject = true;
         }
 
@@ -127,6 +127,8 @@ export default {
       'bán ac',
       'bán nick',
       'mua ib',
+      'ai mua',
+      'ai bán',
       'cần bán',
       'cần mua',
       'uy tín 100%',
