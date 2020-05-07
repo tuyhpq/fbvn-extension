@@ -93,11 +93,41 @@ export default {
         await Common.sleep(3000);
         main();
       } else {
-        chrome.storage.local.set({ countRequestMember: $(`#count_badge_requests`).text() }, () => {
+        chrome.storage.local.set({
+          countRequestMember: $(`#count_badge_requests`).text(),
+          countReported: $(`#count_badge_reported`).text(),
+          countAlerted: $(`#count_badge_alerted`).text()
+        }, () => {
           chrome.runtime.sendMessage({ command: "Next" });
         });
       }
 
+    }
+    main();
+  },
+  removeReported() {
+    async function main() {
+      await Common.sleep(1000);
+      Common.clickTotalLinks($(`a[role="button"][data-tooltip-content="Xóa bài viết"]`));
+      Common.clickTotalLinks($(`a[role="button"][data-tooltip-content="Delete Post"]`));
+      await Common.sleep(1000);
+      Common.clickTotalLinks($(`a[role="button"][data-tooltip-content="Xóa bình luận"]`));
+      Common.clickTotalLinks($(`a[role="button"][data-tooltip-content="Delete Comment"]`));
+      await Common.sleep(1000);
+      chrome.runtime.sendMessage({ command: "Next" });
+    }
+    main();
+  },
+  removeAlerted() {
+    async function main() {
+      await Common.sleep(1000);
+      Common.clickTotalLinks($(`a[role="button"][data-tooltip-content="Xóa bài viết"]`));
+      Common.clickTotalLinks($(`a[role="button"][data-tooltip-content="Delete Post"]`));
+      await Common.sleep(1000);
+      Common.clickTotalLinks($(`a[role="button"][data-tooltip-content="Xóa bình luận"]`));
+      Common.clickTotalLinks($(`a[role="button"][data-tooltip-content="Delete Comment"]`));
+      await Common.sleep(1000);
+      chrome.runtime.sendMessage({ command: "Next" });
     }
     main();
   },
@@ -179,7 +209,7 @@ export default {
       var approveButtonList = $('button[name="approve"][type="submit"]:visible');
       for (let approveButton of approveButtonList) {
         $(approveButton).click();
-        await Common.sleep(1000);
+        await Common.sleep(100);
       }
       await Common.sleep(1000);
       chrome.runtime.sendMessage({ command: "Next" });

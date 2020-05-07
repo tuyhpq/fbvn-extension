@@ -46,6 +46,12 @@ var Features = {
   approvePendingMember() {
     GroupModeration.approvePendingMember();
   },
+  removeReported() {
+    GroupModeration.removeReported();
+  },
+  removeAlerted() {
+    GroupModeration.removeAlerted();
+  },
   quicklyModerateGroups() {
     GroupModeration.quicklyModerateGroups();
   },

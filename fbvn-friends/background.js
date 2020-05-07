@@ -125,7 +125,7 @@ const FEATURE = {
     ];
 
     const groups = [
-      { id: "694039351025214", name: "Free Fire", blackList: BLACK_LIST, rejects: REJECTS, approves: APPROVES, loop: 3 },
+      { id: "694039351025214", name: "Free Fire", blackList: BLACK_LIST, rejects: REJECTS, approves: APPROVES, loop: 3, notMember: true },
       // { id: "qv98vn", name: "Mua bán PUBG" }, đã bán
       { id: "298297000328148", name: "COD", blackList: BLACK_LIST, rejects: REJECTS },
       { id: "360848434395577", name: "Hỗ trợ PUBG", approves: ['acc'] },
@@ -165,18 +165,41 @@ const FEATURE = {
           chrome.tabs.sendMessage(tabId, { command: "approvePendingPost", data: group });
           AddJob(() => {
             chrome.storage.local.get(null, function(result) {
-              if (result.countRequestMember !== '' && result.countRequestMember !== '0') {
-                chrome.tabs.update(tabId, { url: "https://www.facebook.com/groups/" + group.id + "/requests/" }, () => {
-                  AddJob(() => {
-                    chrome.tabs.sendMessage(tabId, { command: "approvePendingMember" });
+              AddJob(() => {
+                main();
+              });
+
+              if (!group.notMember && result.countRequestMember !== '' && result.countRequestMember !== '0') {
+                AddJob(() => {
+                  chrome.tabs.update(tabId, { url: "https://www.facebook.com/groups/" + group.id + "/requests/" }, () => {
                     AddJob(() => {
-                      main();
+                      chrome.tabs.sendMessage(tabId, { command: "approvePendingMember" });
                     });
                   });
                 });
-              } else {
-                main();
               }
+
+              if (result.countReported !== '' && result.countReported !== '0') {
+                AddJob(() => {
+                  chrome.tabs.update(tabId, { url: "https://www.facebook.com/groups/" + group.id + "/reported/" }, () => {
+                    AddJob(() => {
+                      chrome.tabs.sendMessage(tabId, { command: "removeReported" });
+                    });
+                  });
+                });
+              }
+
+              if (result.countAlerted !== '' && result.countAlerted !== '0') {
+                AddJob(() => {
+                  chrome.tabs.update(tabId, { url: "https://www.facebook.com/groups/" + group.id + "/alerted/" }, () => {
+                    AddJob(() => {
+                      chrome.tabs.sendMessage(tabId, { command: "removeAlerted" });
+                    });
+                  });
+                });
+              }
+
+              ExecuteJob();
             });
           });
         });
