@@ -56,6 +56,9 @@ export default {
         if ($(article).find(`div[data-testid="post_message"]`).text().trim().length < 2) {
           hasReject = true;
         }
+        if ($(article).find(`div.inlineBlock`).length > 0) {
+          hasReject = true;
+        }
 
         // approves
         var hasApproves = false;
@@ -178,7 +181,7 @@ export default {
       'đcm',
       'đm',
       'dm',
-      'cc',
+      ' cc',
       'sủa',
       'cứt',
       'ngu',
@@ -191,7 +194,24 @@ export default {
       'trẩu',
       'tuyển dụng',
       'kiếm tiền',
-      'liên hệ'
+      'liên hệ',
+      'zalo',
+      'giá học sinh',
+      'kiếm thẻ',
+      'mình bán',
+      'bán kim cương',
+      'bán code',
+      'tặng code',
+      'tặng kim cương',
+      'nhận ki',
+      'nhận th',
+      'cần đổi',
+      'đổi ac',
+      'gdtg',
+      'hack',
+      'code',
+      'link',
+      'http'
     ];
     const APPROVES = [
       'tuyển thành viên',
