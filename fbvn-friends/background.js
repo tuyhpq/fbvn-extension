@@ -12,7 +12,7 @@ function AddJob(job) {
     if (JOBS_STACK.indexOf(job) > -1) {
       ExecuteJob();
     }
-  }, 60000 * 3);
+  }, 60000 * 5);
 }
 
 chrome.runtime.onMessage.addListener(

@@ -9,7 +9,7 @@ export default {
         chrome.storage.local.set({ countRequestMember: $(`#count_badge_requests`).text() }, () => {
           chrome.runtime.sendMessage({ command: "Next" });
         });
-      }, 60000 * 2);
+      }, 60000 * 5);
 
       await Common.sleep(2000);
       var articleList = $(`div[role="article"]`);
