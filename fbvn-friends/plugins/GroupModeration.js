@@ -143,8 +143,6 @@ export default {
       'code',
       'free',
       'miễn phí',
-      'minigame',
-      'mini game',
       'uy tín',
       'link',
       'clip',
@@ -211,7 +209,9 @@ export default {
       'hack',
       'code',
       'link',
-      'http'
+      'http',
+      'minigame',
+      'mini game',
     ];
     const APPROVES = [
       'tuyển thành viên',

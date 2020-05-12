@@ -65,8 +65,6 @@ const FEATURE = {
       'code',
       'free',
       'miễn phí',
-      'minigame',
-      'mini game',
       'uy tín',
       'link',
       'clip',
@@ -133,7 +131,9 @@ const FEATURE = {
       'hack',
       'code',
       'link',
-      'http'
+      'http',
+      'minigame',
+      'mini game',
     ];
     const APPROVES = [
       'tuyển thành viên',
@@ -147,14 +147,14 @@ const FEATURE = {
       { id: "298297000328148", name: "COD", blackList: BLACK_LIST, rejects: REJECTS },
       { id: "360848434395577", name: "Hỗ trợ PUBG", approves: ['acc'] },
       { id: "744092792625338", name: "Làm quen", blackList: BLACK_LIST },
-      { id: "108807306468805", name: "LOT" },
+      // { id: "108807306468805", name: "LOT" }, đã bán 
       // { id: "486751422133880", name: "Hack FF" }, đã bị khóa
       // { id: "1129744734043345", name: "Ngắm Trai" }, đã bán
-      { id: "3120470631310759", name: "Vitamin" },
+      { id: "3120470631310759", name: "Vitamin", notApprovePost: true },
       { id: "hahahahahihi", name: "Cà khịa", notApprovePost: true },
       // { id: "findbfwifehusbandgf", name: "Cung đấu" }, // đã bán
       // { id: "116039558551577", name: "Giang Hồ Chi Mộng" }, (group is removed)
-      { id: "106584670094311", name: "Chợ ăn Cần Thơ" },
+      // { id: "106584670094311", name: "Chợ ăn Cần Thơ" }, đã bán 
       { id: "297521937365013", name: "Chợ Bến Tre" },
       // { id: "2621702094586454", name: "Đồ cũ Tuy Hòa" }, đã bán
       { id: "346843986016861", name: "Tus buồn", blackList: BLACK_LIST },
@@ -164,7 +164,7 @@ const FEATURE = {
       // { id: "vltk2016", name: "ZSM" }, đã bán
       // { id: "danh.tuong.3q.vng", name: "Danh tướng" }, // đã bán
       { id: "ccht.garena", name: "FF mua bán" },
-      { id: "1954247621454629", name: "FF cộng đồng" },
+      // { id: "1954247621454629", name: "FF cộng đồng" }, đã bán 
       { id: "AxE.Alliance.Empire.VN", name: "Mua bán AxE" }
     ];
     let id = 0;
