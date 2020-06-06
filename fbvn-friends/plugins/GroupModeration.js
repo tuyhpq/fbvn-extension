@@ -3,7 +3,7 @@ import Common from './Common';
 export default {
   approvePendingPost(data) {
     let loop = data.loop;
-    async function main() {
+    async function main(timeSleep = 3000) {
       // escape route if suspended
       setTimeout(() => {
         chrome.storage.local.set({
@@ -15,7 +15,7 @@ export default {
         });
       }, 60000 * 5);
 
-      await Common.sleep(5000);
+      await Common.sleep(timeSleep);
       var articleList = $(`.sej5wr8e > .tr9rh885`);
 
       for (let article of articleList) {
@@ -96,8 +96,7 @@ export default {
 
       if (loop && --loop > 0) {
         Common.scrollToBottom();
-        await Common.sleep(1000);
-        main();
+        main(2000);
       } else {
         chrome.storage.local.set({
           countRequestMember: $(`a[href*="member-requests"] .sv5sfqaa`).text(),
