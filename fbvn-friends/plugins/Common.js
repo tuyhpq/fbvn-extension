@@ -10,9 +10,10 @@ export default {
   scrollToBottom() {
     window.scrollTo(0, document.body.scrollHeight);
   },
-  clickTotalLinks(links) {
+  async clickTotalLinks(links) {
     for (let i = 0; i < links.length; i++) {
       links[i].click();
+      await this.sleep(200);
     }
   }
 };

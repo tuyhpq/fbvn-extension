@@ -6,26 +6,31 @@ export default {
     async function main() {
       // escape route if suspended
       setTimeout(() => {
-        chrome.storage.local.set({ countRequestMember: $(`#count_badge_requests`).text() }, () => {
+        chrome.storage.local.set({
+          countRequestMember: $(`a[href*="member-requests"] .sv5sfqaa`).text(),
+          countReported: $(`a[href*="member_reported_content"] .sv5sfqaa`).text(),
+          countAlerted: $(`a[href*="keyword_alerted_content"] .sv5sfqaa`).text()
+        }, () => {
           chrome.runtime.sendMessage({ command: "Next" });
         });
       }, 60000 * 5);
 
       await Common.sleep(2000);
-      var articleList = $(`div[role="article"]`);
+      var articleList = $(`.sej5wr8e > .tr9rh885`);
 
       for (let article of articleList) {
         Common.scrollToElement(article);
         await Common.sleep(500);
 
-        var isNormalPost1 =
-          // approve header
-          $(article).find(`h5[data-ft='{"tn":"C"}'] span[class="fwb"]`).length === 0
-          // approve body (post must be public)
-          && $(article).find(`a[rel="noopener"]`).length === 0;
+        var contents = $(article).find(".tr9rh885")
+        var content1 = $(contents[0]).find(`>div>div>div[dir="auto"]`);
+        var content2 = $(contents[0]).find(`>div>div>div[class="l9j0dhe7"]`);
 
-        // not share
-        var isNormalPost2 = $(article).find('div.mts').length === 0;
+        // has title
+        var isNormalPost1 = content1.length === 1;
+
+        // has body
+        var isNormalPost2 = content2.length === 1;
 
         // not external link
         var isNormalPost3 = $(article).find('a[target="_blank"]').length === 0;
@@ -33,7 +38,7 @@ export default {
         // blacklist
         var hasBlackList = false;
         if (data.blackList) {
-          var contents = $(article).find(`div[data-testid="post_message"]`).text();
+          var contents = content1.text();
           for (let text of data.blackList) {
             if (contents.toLocaleLowerCase().indexOf(text) > -1) {
               hasBlackList = true;
@@ -45,7 +50,7 @@ export default {
         // rejects
         var hasReject = false;
         if (data.rejects) {
-          var contents = $(article).find(`div[data-testid="post_message"]`).text();
+          var contents = content1.text();
           for (let text of data.rejects) {
             if (contents.toLocaleLowerCase().indexOf(text) > -1) {
               hasReject = true;
@@ -53,17 +58,11 @@ export default {
             }
           }
         }
-        if ($(article).find(`div[data-testid="post_message"]`).text().trim().length < 2) {
-          hasReject = true;
-        }
-        if ($(article).find(`div.inlineBlock`).length > 0) {
-          hasReject = true;
-        }
 
         // approves
         var hasApproves = false;
         if (data.approves) {
-          var contents = $(article).find(`div[data-testid="post_message"]`).text();
+          var contents = content1.text();
           for (let text of data.approves) {
             if (contents.toLocaleLowerCase().indexOf(text) > -1) {
               hasApproves = true;
@@ -72,18 +71,22 @@ export default {
           }
         }
 
+        // bad history
+        if ($(article).find("div.muag1w35").length !== 0) {
+          hasBlackList = true;
+        }
+
         if (isNormalPost1 && isNormalPost2 && isNormalPost3 && !hasReject) {
           if (!hasApproves && (data.notApprovePost || hasBlackList)) {
             $(article).remove();
+            console.log('Đã giữ lại.');
             continue;
           } else {
-            $(article).find(`div._idm`).find(`a[role="button"]`)[0].click(); // 0 is approve button
+            $(article).find(`div[aria-label="Approve"]`)[0].click(); // approve button
             console.log('Đã đồng ý.');
           }
         } else {
-          $(article).find(`div._idm`).find(`a[role="button"]`)[1].click(); // 1 is reject button
-          await Common.sleep(3000);
-          $(`button[data-testid="delete_post_confirm_button"]`).click();
+          $(article).find(`div[aria-label="Decline"]`)[0].click(); // reject button
           console.log('Đã xóa!');
         }
 
@@ -97,9 +100,9 @@ export default {
         main();
       } else {
         chrome.storage.local.set({
-          countRequestMember: $(`#count_badge_requests`).text(),
-          countReported: $(`#count_badge_reported`).text(),
-          countAlerted: $(`#count_badge_alerted`).text()
+          countRequestMember: $(`a[href*="member-requests"] .sv5sfqaa`).text(),
+          countReported: $(`a[href*="member_reported_content"] .sv5sfqaa`).text(),
+          countAlerted: $(`a[href*="keyword_alerted_content"] .sv5sfqaa`).text()
         }, () => {
           chrome.runtime.sendMessage({ command: "Next" });
         });
@@ -111,11 +114,7 @@ export default {
   removeReported() {
     async function main() {
       await Common.sleep(1000);
-      Common.clickTotalLinks($(`a[role="button"][data-tooltip-content="Xóa bài viết"]`));
-      Common.clickTotalLinks($(`a[role="button"][data-tooltip-content="Delete Post"]`));
-      await Common.sleep(1000);
-      Common.clickTotalLinks($(`a[role="button"][data-tooltip-content="Xóa bình luận"]`));
-      Common.clickTotalLinks($(`a[role="button"][data-tooltip-content="Delete Comment"]`));
+      await Common.clickTotalLinks($(`div[aria-label="Delete"][role="button"][tabindex="0"]`));
       await Common.sleep(1000);
       chrome.runtime.sendMessage({ command: "Next" });
     }
@@ -124,11 +123,7 @@ export default {
   removeAlerted() {
     async function main() {
       await Common.sleep(1000);
-      Common.clickTotalLinks($(`a[role="button"][data-tooltip-content="Xóa bài viết"]`));
-      Common.clickTotalLinks($(`a[role="button"][data-tooltip-content="Delete Post"]`));
-      await Common.sleep(1000);
-      Common.clickTotalLinks($(`a[role="button"][data-tooltip-content="Xóa bình luận"]`));
-      Common.clickTotalLinks($(`a[role="button"][data-tooltip-content="Delete Comment"]`));
+      await Common.clickTotalLinks($(`div[aria-label="Delete"][role="button"][tabindex="0"]`));
       await Common.sleep(1000);
       chrome.runtime.sendMessage({ command: "Next" });
     }
@@ -223,15 +218,8 @@ export default {
   },
   approvePendingMember() {
     async function main() {
-      await Common.sleep(2000);
-      Common.scrollToElement($('#member_requests_pagelet'));
-      await Common.sleep(500);
-
-      var approveButtonList = $('button[name="approve"][type="submit"]:visible');
-      for (let approveButton of approveButtonList) {
-        $(approveButton).click();
-        await Common.sleep(100);
-      }
+      await Common.sleep(1000);
+      await Common.clickTotalLinks($(`div[aria-label="Approve"][role="button"][tabindex="0"]`));
       await Common.sleep(1000);
       chrome.runtime.sendMessage({ command: "Next" });
     }
