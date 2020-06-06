@@ -96,7 +96,7 @@ export default {
 
       if (loop && --loop > 0) {
         Common.scrollToBottom();
-        await Common.sleep(3000);
+        await Common.sleep(1000);
         main();
       } else {
         chrome.storage.local.set({
