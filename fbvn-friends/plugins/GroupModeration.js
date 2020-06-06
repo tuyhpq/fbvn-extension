@@ -15,7 +15,7 @@ export default {
         });
       }, 60000 * 5);
 
-      await Common.sleep(3000);
+      await Common.sleep(5000);
       var articleList = $(`.sej5wr8e > .tr9rh885`);
 
       for (let article of articleList) {

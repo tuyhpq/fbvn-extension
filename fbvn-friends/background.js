@@ -25,11 +25,16 @@ chrome.runtime.onMessage.addListener(
   }
 );
 
-var sumComplete = 0;
+var oldUrl = null;
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-  if (changeInfo.status === "complete" && ++sumComplete % 2 === 0) {
-    ExecuteJob();
+  if (changeInfo.status === "complete") {
+    var url = new URL(tab.url);
+    var newUrl = url.origin + url.pathname;
+    if (oldUrl !== newUrl) {
+      oldUrl = newUrl;
+      ExecuteJob();
+    }
   }
 });
 
