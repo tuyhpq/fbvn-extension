@@ -24,8 +24,11 @@ chrome.runtime.onMessage.addListener(
     }
   }
 );
+
+var sumComplete = 0;
+
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-  if (changeInfo.status === "complete") {
+  if (changeInfo.status === "complete" && ++sumComplete % 2 === 0) {
     ExecuteJob();
   }
 });

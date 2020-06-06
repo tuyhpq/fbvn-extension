@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "webpack --mode=none --watch",
-    "build": "webpack --mode=production --watch"
+    "build": "webpack --mode=production"
   },
   "keywords": [],
   "author": "",

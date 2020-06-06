@@ -15,7 +15,7 @@ export default {
         });
       }, 60000 * 5);
 
-      await Common.sleep(2000);
+      await Common.sleep(3000);
       var articleList = $(`.sej5wr8e > .tr9rh885`);
 
       for (let article of articleList) {
@@ -113,7 +113,7 @@ export default {
   },
   removeReported() {
     async function main() {
-      await Common.sleep(1000);
+      await Common.sleep(3000);
       await Common.clickTotalLinks($(`div[aria-label="Delete"][role="button"][tabindex="0"]`));
       await Common.sleep(1000);
       chrome.runtime.sendMessage({ command: "Next" });
@@ -122,7 +122,7 @@ export default {
   },
   removeAlerted() {
     async function main() {
-      await Common.sleep(1000);
+      await Common.sleep(3000);
       await Common.clickTotalLinks($(`div[aria-label="Delete"][role="button"][tabindex="0"]`));
       await Common.sleep(1000);
       chrome.runtime.sendMessage({ command: "Next" });
@@ -218,7 +218,7 @@ export default {
   },
   approvePendingMember() {
     async function main() {
-      await Common.sleep(1000);
+      await Common.sleep(3000);
       await Common.clickTotalLinks($(`div[aria-label="Approve"][role="button"][tabindex="0"]`));
       await Common.sleep(1000);
       chrome.runtime.sendMessage({ command: "Next" });
