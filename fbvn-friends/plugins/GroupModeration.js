@@ -3,7 +3,7 @@ import Common from './Common';
 export default {
   approvePendingPost(data) {
     let loop = data.loop;
-    async function main(timeSleep = 3000) {
+    async function main(timeSleep = 5000) {
       // escape route if suspended
       setTimeout(() => {
         chrome.storage.local.set({
@@ -35,10 +35,22 @@ export default {
         // not external link
         var isNormalPost3 = $(article).find('a[target="_blank"]').length === 0;
 
+        // enough time
+        var enoughTime = false;
+        var enoughTimeText = $(article).find('span.e9vueds3').text();
+        if (enoughTimeText.includes('now')) {
+          enoughTime = false;
+        } else if (enoughTimeText.includes('min')) {
+          var enoughTimeVal = enoughTimeText.match(/\s([0-9]*)\smin/).pop();
+          enoughTime = enoughTimeVal > 20;
+        } else if (enoughTimeText.length > 0) {
+          enoughTime = true;
+        }
+
         // blacklist
         var hasBlackList = false;
         if (data.blackList) {
-          var contents = content1.text();
+          var contents = content1.text().normalize('NFC');
           for (let text of data.blackList) {
             if (contents.toLocaleLowerCase().indexOf(text) > -1) {
               hasBlackList = true;
@@ -50,7 +62,7 @@ export default {
         // rejects
         var hasReject = false;
         if (data.rejects) {
-          var contents = content1.text();
+          var contents = content1.text().normalize('NFC');
           for (let text of data.rejects) {
             if (contents.toLocaleLowerCase().indexOf(text) > -1) {
               hasReject = true;
@@ -62,7 +74,7 @@ export default {
         // approves
         var hasApproves = false;
         if (data.approves) {
-          var contents = content1.text();
+          var contents = content1.text().normalize('NFC');
           for (let text of data.approves) {
             if (contents.toLocaleLowerCase().indexOf(text) > -1) {
               hasApproves = true;
@@ -77,16 +89,16 @@ export default {
         }
 
         if (isNormalPost1 && isNormalPost2 && isNormalPost3 && !hasReject) {
-          if (!hasApproves && (data.notApprovePost || hasBlackList)) {
+          if (!hasApproves && (data.notApprovePost || hasBlackList || !enoughTime)) {
             $(article).remove();
             console.log('Đã giữ lại.');
             continue;
           } else {
-            $(article).find(`div[aria-label="Approve"]`)[0].click(); // approve button
+            $(article).find(`div[aria-label="Approve"]`)[0] && $(article).find(`div[aria-label="Approve"]`)[0].click(); // approve button
             console.log('Đã đồng ý.');
           }
         } else {
-          $(article).find(`div[aria-label="Decline"]`)[0].click(); // reject button
+          $(article).find(`div[aria-label="Decline"]`)[0] && $(article).find(`div[aria-label="Decline"]`)[0].click(); // reject button
           console.log('Đã xóa!');
         }
 
