@@ -219,7 +219,7 @@ export default {
       'tuyển tv',
       'ttv'
     ];
-    this.approvePendingPost({ blackList: BLACK_LIST, rejects: REJECTS, approves: APPROVES, loop: 999999 });
+    this.approvePendingPost({ blackList: BLACK_LIST, rejects: REJECTS, loop: 999999, notApprovePost: true });
   },
   approvePendingMember() {
     async function main() {
