@@ -35,14 +35,22 @@ export default {
         // not external link
         var isNormalPost3 = $(article).find('a[target="_blank"]').length === 0;
 
+        // not private post
+        var isNormalPost4 = content2.text().indexOf(`isn't available`) === -1
+
         // enough time
         var enoughTime = false;
         var enoughTimeText = $(article).find('span.e9vueds3').text();
         if (enoughTimeText.includes('now')) {
           enoughTime = false;
         } else if (enoughTimeText.includes('min')) {
-          var enoughTimeVal = enoughTimeText.match(/\s([0-9]*)\smin/).pop();
-          enoughTime = enoughTimeVal > 20;
+          var enoughTimeString = enoughTimeText.match(/\s([0-9]*)\smin/);
+          if (enoughTimeString) {
+            var enoughTimeVal = enoughTimeString.pop();
+            enoughTime = enoughTimeVal > 20;
+          } else {
+            enoughTime = true;
+          }
         } else if (enoughTimeText.length > 0) {
           enoughTime = true;
         }
@@ -88,7 +96,7 @@ export default {
           hasBlackList = true;
         }
 
-        if (isNormalPost1 && isNormalPost2 && isNormalPost3 && !hasReject) {
+        if (isNormalPost1 && isNormalPost2 && isNormalPost3 && isNormalPost4 && !hasReject) {
           if (!hasApproves && (data.notApprovePost || hasBlackList || !enoughTime)) {
             $(article).remove();
             console.log('Đã giữ lại.');
