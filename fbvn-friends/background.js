@@ -158,7 +158,7 @@ const FEATURE = {
       // { id: "106584670094311", name: "Chợ ăn Cần Thơ" }, đã bán 
       { id: "297521937365013", name: "Chợ Bến Tre" },
       // { id: "2621702094586454", name: "Đồ cũ Tuy Hòa" }, đã bán
-      { id: "346843986016861", name: "Tus buồn", blackList: BLACK_LIST },
+      // { id: "346843986016861", name: "Tus buồn", blackList: BLACK_LIST }, đã bán
       // { id: "351563755753840", name: "Xe độ" }, // đã bán
       // { id: "498154793692114", name: "Buff sao Liên Quân" }, cho thuê
       { id: "191718824567616", name: "Liên quân confess", notApprovePost: true },
@@ -166,7 +166,7 @@ const FEATURE = {
       // { id: "danh.tuong.3q.vng", name: "Danh tướng" }, // đã bán
       // { id: "ccht.garena", name: "FF mua bán" }, cho thuê
       // { id: "1954247621454629", name: "FF cộng đồng" }, đã bán 
-      { id: "AxE.Alliance.Empire.VN", name: "Mua bán AxE" }
+      // { id: "AxE.Alliance.Empire.VN", name: "Mua bán AxE" }, đã bán
     ];
     let id = 0;
     let getIndex = function() {
