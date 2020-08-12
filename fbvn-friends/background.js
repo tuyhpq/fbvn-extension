@@ -70,6 +70,7 @@ const FEATURE = {
       'add',
       'kết bạn',
       'ib',
+      'inb',
       'code',
       'free',
       'miễn phí',
